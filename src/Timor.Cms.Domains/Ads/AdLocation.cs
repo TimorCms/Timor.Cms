@@ -19,5 +19,10 @@ namespace Timor.Cms.Domains.Ads
         /// 显示名称Ï
         /// </summary>
         public string DisplayName { get; set; }
+
+        /// <summary>
+        /// 单个广告还是多个
+        /// </summary>
+        public bool IsMulpitle { get; set; } = false;
     }
 }

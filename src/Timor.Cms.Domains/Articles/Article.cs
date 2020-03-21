@@ -63,10 +63,9 @@ namespace Timor.Cms.Domains.Articles
         public IList<Category> Categories { get; set; }
 
         /// <summary>
-        /// 文章的广告列表
+        /// 文章的广告列表，针对文章而显示的一些Banner
         /// </summary>
         /// <remarks>
-        /// 我相信大部分情况下，这个字段没啥用，但是偶尔如果有需求针对一些文章详情页加一些Banner之类的图，这个字段就会派上用场
         /// </remarks>
         public IList<Ad> Ads { get; set; }
 
