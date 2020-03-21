@@ -5,11 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.Web", "src\Timor.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.Domains", "src\Timor.Cms.Domains\Timor.Cms.Domains.csproj", "{556FFEE1-9098-4776-9CF1-709A938091D0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{89E94202-A5ED-4283-AB7E-339001086B33}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{89E94202-A5ED-4283-AB7E-339001086B33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.IDataAccess", "src\Timor.Cms.IDataAccess\Timor.Cms.IDataAccess.csproj", "{2F524AF4-2A7F-4BD0-B866-50A6FACA3634}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.IRepository", "src\Timor.Cms.IDataAccess\Timor.Cms.IRepository.csproj", "{2F524AF4-2A7F-4BD0-B866-50A6FACA3634}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.DataAccess.MongoDb", "src\Timor.Cms.DataAccess.MongoDb\Timor.Cms.DataAccess.MongoDb.csproj", "{B10EB7ED-9177-4F73-8955-258C0309A5AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.Repository.MongoDb", "src\Timor.Cms.DataAccess.MongoDb\Timor.Cms.Repository.MongoDb.csproj", "{B10EB7ED-9177-4F73-8955-258C0309A5AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.Service.Tests", "tests\Timor.Cms.Service.Tests\Timor.Cms.Service.Tests.csproj", "{4D0D19AE-2155-48BF-A9F1-FBE62A37F74A}"
 EndProject

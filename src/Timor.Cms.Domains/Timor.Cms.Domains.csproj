@@ -8,5 +8,7 @@
     <Folder Include="Articles\" />
     <Folder Include="Users\" />
     <Folder Include="Ads\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Navigations\" />
   </ItemGroup>
 </Project>
