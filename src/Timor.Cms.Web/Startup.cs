@@ -2,12 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Timor.Cms.Domains;
+using Timor.Cms.Infrastructure;
+using Timor.Cms.Infrastructure.Dependency;
+using Timor.Cms.Repository.MongoDb;
+using Timor.Cms.Service;
 
 namespace Timor.Cms.Web
 {
@@ -23,7 +30,20 @@ namespace Timor.Cms.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddOptions();
+            services
+                .AddControllersWithViews()
+                .AddControllersAsServices();
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            ModuleRegister.Regist(builder,
+                typeof(InfrastructureModule),
+                typeof(DomainModule),
+                typeof(MongoDbRepositoryModule),
+                typeof(ServiceModule),
+                typeof(WebModule));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,9 +59,9 @@ namespace Timor.Cms.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthorization();

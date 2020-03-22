@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.Service.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.Infrastructure", "src\Timor.Cms.Infrastructure\Timor.Cms.Infrastructure.csproj", "{0210C36D-A519-4B67-AEFE-178227127BB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.Service", "src\Timor.Cms.Service\Timor.Cms.Service.csproj", "{72628F2B-13A6-4634-9655-43CACC777471}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{0210C36D-A519-4B67-AEFE-178227127BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0210C36D-A519-4B67-AEFE-178227127BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0210C36D-A519-4B67-AEFE-178227127BB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72628F2B-13A6-4634-9655-43CACC777471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72628F2B-13A6-4634-9655-43CACC777471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72628F2B-13A6-4634-9655-43CACC777471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72628F2B-13A6-4634-9655-43CACC777471}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2F524AF4-2A7F-4BD0-B866-50A6FACA3634} = {89E94202-A5ED-4283-AB7E-339001086B33}

@@ -11,4 +11,7 @@
     <Folder Include="Entities\" />
     <Folder Include="Navigations\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Timor.Cms.Infrastructure\Timor.Cms.Infrastructure.csproj" />
+  </ItemGroup>
 </Project>
