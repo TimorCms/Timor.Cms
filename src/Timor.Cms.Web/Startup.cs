@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Timor.Cms.Api;
 using Timor.Cms.Domains;
 using Timor.Cms.Infrastructure;
 using Timor.Cms.Infrastructure.Dependency;
@@ -33,6 +34,7 @@ namespace Timor.Cms.Web
             services.AddOptions();
             services
                 .AddControllersWithViews()
+                .AddApplicationPart(typeof(ApiModule).Assembly)
                 .AddControllersAsServices();
         }
 
@@ -43,6 +45,7 @@ namespace Timor.Cms.Web
                 typeof(DomainModule),
                 typeof(MongoDbRepositoryModule),
                 typeof(ServiceModule),
+                typeof(ApiModule),
                 typeof(WebModule));
         }
 
@@ -71,6 +74,8 @@ namespace Timor.Cms.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllers();
             });
         }
     }

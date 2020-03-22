@@ -16,5 +16,8 @@
     <ProjectReference Include="..\Timor.Cms.Repository.MongoDb\Timor.Cms.Repository.MongoDb.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\Timor.Cms.Api\Timor.Cms.Api.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>
