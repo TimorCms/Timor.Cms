@@ -6,5 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Timor.Cms.Infrastructure\Timor.Cms.Infrastructure.csproj" />
+    <ProjectReference Include="..\Timor.Cms.IRepository\Timor.Cms.IRepository.csproj" />
+    <ProjectReference Include="..\Timor.Cms.Domains\Timor.Cms.Domains.csproj" />
   </ItemGroup>
 </Project>
