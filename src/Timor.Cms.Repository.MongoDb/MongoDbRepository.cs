@@ -1,46 +1,62 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using Timor.Cms.Domains.Entities;
-using Timor.Cms.IRepository;
 
 namespace Timor.Cms.Repository.MongoDb
 {
-    public class MongoDbRepository<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey>
-        where TEntity : Entity<TPrimaryKey>
+    public abstract class MongoDbRepository<TEntity> where TEntity : Entity<ObjectId>
     {
-        public Task BatchDeleteAsync(List<TPrimaryKey> ids)
+        private readonly IMongoCollection<TEntity> _collection;
+
+        public MongoDbRepository(string collectionName)
         {
-            throw new System.NotImplementedException();
+            _collection = MongoCollectionProvider.GetCollection<TEntity>(collectionName);
         }
 
-        public Task DeleteAsync(TEntity entity)
+        public virtual async Task<TEntity> GetById(ObjectId id)
         {
-            throw new System.NotImplementedException();
+            var entity = await _collection.Find(a => a.Id == id).FirstOrDefaultAsync();
+
+            return entity;
         }
 
-        public Task DeleteAsync(TPrimaryKey id)
+        public virtual async Task InsertAsync(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity), "插入失败!原因：参数不能为空。");
+            }
+
+            await _collection.InsertOneAsync(entity);
         }
 
-        public Task<TEntity> GetAsync(TPrimaryKey id)
+        public virtual async Task UpdateAsync(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity), "更新失败!原因：参数不能为空。");
+            }
+
+            await _collection.ReplaceOneAsync(x => x.Id == entity.Id, entity);
         }
 
-        public Task<TPrimaryKey> InsertAndGetIdAsync(TEntity entity)
+
+        public virtual async Task DeleteAsync(ObjectId id)
         {
-            throw new System.NotImplementedException();
+            await _collection.DeleteOneAsync(x => x.Id == id);
         }
 
-        public Task InsertAsync(TEntity entity)
+        public virtual async Task DeleteAsync(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            await DeleteAsync(entity.Id);
         }
 
-        public Task UpdateAsync(TEntity entity)
+        public virtual async Task DeleteMultipleAsync(List<ObjectId> ids)
         {
-            throw new System.NotImplementedException();
+            await _collection.DeleteManyAsync(Builders<TEntity>.Filter.Where(x => ids.Contains(x.Id)));
         }
     }
 }

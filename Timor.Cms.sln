@@ -1,23 +1,24 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.Web", "src\Timor.Cms.Web\Timor.Cms.Web.csproj", "{DF6C9BEC-7CC6-4C71-B947-C51FE3D8543D}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.98
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timor.Cms.Web", "src\Timor.Cms.Web\Timor.Cms.Web.csproj", "{DF6C9BEC-7CC6-4C71-B947-C51FE3D8543D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.Domains", "src\Timor.Cms.Domains\Timor.Cms.Domains.csproj", "{556FFEE1-9098-4776-9CF1-709A938091D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timor.Cms.Domains", "src\Timor.Cms.Domains\Timor.Cms.Domains.csproj", "{556FFEE1-9098-4776-9CF1-709A938091D0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{89E94202-A5ED-4283-AB7E-339001086B33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.IRepository", "src\Timor.Cms.IRepository\Timor.Cms.IRepository.csproj", "{2F524AF4-2A7F-4BD0-B866-50A6FACA3634}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timor.Cms.Repository.MongoDb", "src\Timor.Cms.Repository.MongoDb\Timor.Cms.Repository.MongoDb.csproj", "{B10EB7ED-9177-4F73-8955-258C0309A5AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.Repository.MongoDb", "src\Timor.Cms.Repository.MongoDb\Timor.Cms.Repository.MongoDb.csproj", "{B10EB7ED-9177-4F73-8955-258C0309A5AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timor.Cms.Service.Tests", "tests\Timor.Cms.Service.Tests\Timor.Cms.Service.Tests.csproj", "{4D0D19AE-2155-48BF-A9F1-FBE62A37F74A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.Service.Tests", "tests\Timor.Cms.Service.Tests\Timor.Cms.Service.Tests.csproj", "{4D0D19AE-2155-48BF-A9F1-FBE62A37F74A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timor.Cms.Infrastructure", "src\Timor.Cms.Infrastructure\Timor.Cms.Infrastructure.csproj", "{0210C36D-A519-4B67-AEFE-178227127BB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.Infrastructure", "src\Timor.Cms.Infrastructure\Timor.Cms.Infrastructure.csproj", "{0210C36D-A519-4B67-AEFE-178227127BB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timor.Cms.Service", "src\Timor.Cms.Service\Timor.Cms.Service.csproj", "{72628F2B-13A6-4634-9655-43CACC777471}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.Service", "src\Timor.Cms.Service\Timor.Cms.Service.csproj", "{72628F2B-13A6-4634-9655-43CACC777471}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timor.Cms.Api", "src\Timor.Cms.Api\Timor.Cms.Api.csproj", "{D96E4380-B5CE-47D0-8054-AD78DD5B8126}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timor.Cms.Api", "src\Timor.Cms.Api\Timor.Cms.Api.csproj", "{D96E4380-B5CE-47D0-8054-AD78DD5B8126}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timor.Cms.Repository.MongoDb.Tests", "tests\Timor.Cms.Repository.MongoDb.Tests\Timor.Cms.Repository.MongoDb.Tests.csproj", "{9975CCC4-A4EB-42CA-8F8F-B6A4918B4791}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +34,6 @@ Global
 		{556FFEE1-9098-4776-9CF1-709A938091D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{556FFEE1-9098-4776-9CF1-709A938091D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{556FFEE1-9098-4776-9CF1-709A938091D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F524AF4-2A7F-4BD0-B866-50A6FACA3634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F524AF4-2A7F-4BD0-B866-50A6FACA3634}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F524AF4-2A7F-4BD0-B866-50A6FACA3634}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F524AF4-2A7F-4BD0-B866-50A6FACA3634}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B10EB7ED-9177-4F73-8955-258C0309A5AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B10EB7ED-9177-4F73-8955-258C0309A5AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B10EB7ED-9177-4F73-8955-258C0309A5AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,9 +54,19 @@ Global
 		{D96E4380-B5CE-47D0-8054-AD78DD5B8126}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D96E4380-B5CE-47D0-8054-AD78DD5B8126}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D96E4380-B5CE-47D0-8054-AD78DD5B8126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9975CCC4-A4EB-42CA-8F8F-B6A4918B4791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9975CCC4-A4EB-42CA-8F8F-B6A4918B4791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9975CCC4-A4EB-42CA-8F8F-B6A4918B4791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9975CCC4-A4EB-42CA-8F8F-B6A4918B4791}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{2F524AF4-2A7F-4BD0-B866-50A6FACA3634} = {89E94202-A5ED-4283-AB7E-339001086B33}
 		{B10EB7ED-9177-4F73-8955-258C0309A5AB} = {89E94202-A5ED-4283-AB7E-339001086B33}
+		{9975CCC4-A4EB-42CA-8F8F-B6A4918B4791} = {89E94202-A5ED-4283-AB7E-339001086B33}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE306704-0C52-4DAF-9D67-40268078156B}
 	EndGlobalSection
 EndGlobal

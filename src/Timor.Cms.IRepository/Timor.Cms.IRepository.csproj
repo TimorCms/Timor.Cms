@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Timor.Cms.Domains\Timor.Cms.Domains.csproj" />
+  </ItemGroup>
+
 </Project>

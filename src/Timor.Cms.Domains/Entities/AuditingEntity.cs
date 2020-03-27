@@ -1,9 +1,10 @@
 ﻿using System;
+using MongoDB.Bson;
 using Timor.Cms.Domains.Users;
 
 namespace Timor.Cms.Domains.Entities
 {
-    public abstract class AuditingEntity : AuditingEntity<int>
+    public abstract class AuditingEntity : AuditingEntity<ObjectId>
     {
 
     }
