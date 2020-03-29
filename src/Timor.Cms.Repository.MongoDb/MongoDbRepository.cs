@@ -11,14 +11,14 @@ namespace Timor.Cms.Repository.MongoDb
     {
         private readonly IMongoCollection<TEntity> _collection;
 
-        public MongoDbRepository(string collectionName)
+        public MongoDbRepository(IMongoCollectionProvider collectionProvider, string collectionName)
         {
-            _collection = MongoCollectionProvider.GetCollection<TEntity>(collectionName);
+            _collection = collectionProvider.GetCollection<TEntity>(collectionName);
         }
 
         public virtual async Task<TEntity> GetById(ObjectId id)
         {
-            var entity = await _collection.Find(a => a.Id == id).FirstOrDefaultAsync();
+            var entity = await _collection.FindSync(a => a.Id == id).FirstOrDefaultAsync();
 
             return entity;
         }

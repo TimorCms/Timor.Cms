@@ -1,10 +1,13 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using Timor.Cms.Domains.Entities;
+using Timor.Cms.Infrastructure.Dependency;
 
 namespace Timor.Cms.Repository.MongoDb
 {
-    public class MongoCollectionProvider
+    public class MongoCollectionProvider : IMongoCollectionProvider
     {
-        public static IMongoCollection<TEntity> GetCollection<TEntity>(string collectionName)
+        public IMongoCollection<TEntity> GetCollection<TEntity>(string collectionName) where TEntity : Entity<ObjectId>
         {
             var client = new MongoClient("mongodb://sa:123qwe@127.0.0.1:27017/admin");
 

@@ -5,7 +5,8 @@ namespace Timor.Cms.Repository.MongoDb.Articles
 {
     public class ArticleRepository : MongoDbRepository<Article>, ISingleton
     {
-        public ArticleRepository() : base("article")
+        public ArticleRepository(IMongoCollectionProvider mongoCollectionProvider) 
+            : base(mongoCollectionProvider, "article")
         {
         }
     }
