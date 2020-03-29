@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Linq;
+using System.Reflection;
 using Autofac;
 
 namespace Timor.Cms.Infrastructure.Dependency
@@ -9,16 +11,30 @@ namespace Timor.Cms.Infrastructure.Dependency
         {
             builder.RegisterAssemblyTypes(assembly)
                 .Where(t => typeof(ISingleton).IsAssignableFrom(t))
+                .As(GetRegisterAsType)
                 .PublicOnly()
                 .SingleInstance();
+
             builder.RegisterAssemblyTypes(assembly)
                 .Where(t => t.IsAssignableFrom(typeof(ITransient)))
+                .As(GetRegisterAsType)
                 .PublicOnly()
                 .InstancePerDependency();
             builder.RegisterAssemblyTypes(assembly)
                 .Where(t => t.IsAssignableFrom(typeof(IScoped)))
+                .As(GetRegisterAsType)
                 .PublicOnly()
                 .InstancePerRequest();
+        }
+
+        private static Type GetRegisterAsType(Type registerType)
+        {
+            if (registerType.GetInterfaces().Length > 1)
+            {
+                return registerType.GetInterfaces().First(x => !typeof(ISingleton).IsAssignableFrom(registerType));
+            }
+
+            return registerType;
         }
     }
 }
