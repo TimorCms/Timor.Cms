@@ -1,42 +1,48 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extras.Moq;
 using MongoDB.Driver;
+using Moq;
 using Timor.Cms.Domains.Articles;
 using Timor.Cms.Repository.MongoDb.Articles;
 using Xunit;
 
 namespace Timor.Cms.Repository.MongoDb.Tests.Articles
 {
-    public class InsertArticleTests
+    public class InsertArticleTests : MongoDbRepositoryTestBase
     {
         [Fact]
         public async Task ShouldInsertSuccess()
         {
-            var repository = new ArticleRepository();
+            Mock<IMongoCollection<Article>> articleCollectionMock = new Mock<IMongoCollection<Article>>();
 
-            var guid = Guid.NewGuid();
+            Mock<IMongoCollectionProvider> collectionProvider = new Mock<IMongoCollectionProvider>();
 
-            await repository.InsertAsync(new Article
+            collectionProvider.Setup(p => p.GetCollection<Article>("article")).Returns(articleCollectionMock.Object);
+
+            using var moq = AutoMock.GetLoose((builder) =>
             {
-                Title = guid.ToString("N")
+                RegistModule(builder);
+
+                builder.Register(x => collectionProvider.Object).As<IMongoCollectionProvider>();
             });
 
-            var client = new MongoClient("mongodb://sa:123qwe@127.0.0.1:27017/admin");
+            var repository = moq.Create<ArticleRepository>();
 
-            var dataBase = client.GetDatabase("TimorCms");
+            var article = new Article();
 
-            var collection = dataBase.GetCollection<Article>("article");
+            await repository.InsertAsync(article);
 
-            var article = collection.FindAsync(a => a.Title == guid.ToString("N"));
-
-            Assert.NotNull(article);
+            // verify InsertOneAsync method have been called once times
+            articleCollectionMock.Verify(c => c.InsertOneAsync(article, null, default), Times.Once());
         }
 
         [Fact]
         public async Task ShouldInsertFailedWhenArticleNull()
         {
             // Arrange
-            var repository = new ArticleRepository();
+            var repository = IocManager.Resolve<ArticleRepository>();
 
             var exception = await Assert.ThrowsAsync<ArgumentNullException>(async () =>
               {
