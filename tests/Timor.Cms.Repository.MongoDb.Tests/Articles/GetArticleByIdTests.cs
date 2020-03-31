@@ -1,35 +1,59 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extras.Moq;
 using MongoDB.Bson;
+using MongoDB.Driver;
+using Moq;
 using Timor.Cms.Domains.Articles;
 using Timor.Cms.Repository.MongoDb.Articles;
 using Xunit;
 
 namespace Timor.Cms.Repository.MongoDb.Tests.Articles
 {
-    public class GetArticleByIdTests
+    public class GetArticleByIdTests : MongoDbRepositoryTestBase
     {
         [Fact]
         public async Task ShouldGetArticleSuccess()
         {
-            var repository = new ArticleRepository();
+            Mock<IMongoCollectionAdapter<Article>> articleCollectionMock = new Mock<IMongoCollectionAdapter<Article>>();
 
-            var article = new Article
+            articleCollectionMock
+                .Setup(c => c.Find(It.IsAny<Expression<Func<Article, bool>>>(), null))
+                .Returns(new Mock<IFindFluent<Article, Article>>().Object);
+
+            Mock<IMongoCollectionProvider<Article>> collectionProvider = new Mock<IMongoCollectionProvider<Article>>();
+
+            collectionProvider
+                .Setup(p => p.GetCollection("article"))
+                .Returns(articleCollectionMock.Object);
+
+            using var moq = AutoMock.GetLoose((builder) =>
             {
-                Title = Guid.NewGuid().ToString()
-            };
+                RegistModule(builder);
 
-            await repository.InsertAsync(article);
+                builder.Register(x => collectionProvider.Object).As<IMongoCollectionProvider<Article>>();
+            });
 
-            var result = await repository.GetById(article.Id);
+            var repository = moq.Create<ArticleRepository>();
 
-            Assert.Equal(article.Title, result.Title);
+            try
+            {
+                await repository.GetById(ObjectId.GenerateNewId());
+            }
+            catch
+            {
+                // ignore null object exception, it's a mock object issue
+            }
+
+            articleCollectionMock.Verify(c => c.Find(It.IsAny<Expression<Func<Article, bool>>>(), null), Times.Once);
         }
 
         [Fact]
         public async Task ShouldReturnNullWhenIdNotExist()
         {
-            var repository = new ArticleRepository();
+            var repository = IocManager.Resolve<ArticleRepository>();
 
             var result = await repository.GetById(ObjectId.GenerateNewId());
 

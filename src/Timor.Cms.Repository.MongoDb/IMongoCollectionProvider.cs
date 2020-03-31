@@ -4,8 +4,8 @@ using Timor.Cms.Domains.Entities;
 
 namespace Timor.Cms.Repository.MongoDb
 {
-    public interface IMongoCollectionProvider
+    public interface IMongoCollectionProvider<TEntity> where TEntity : Entity<ObjectId>
     {
-        IMongoCollection<TEntity> GetCollection<TEntity>(string collectionName) where TEntity : Entity<ObjectId>;
+        IMongoCollectionAdapter<TEntity> GetCollection(string collectionName);
     }
 }

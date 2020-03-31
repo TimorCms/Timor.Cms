@@ -11,7 +11,7 @@ namespace Timor.Cms.Repository.MongoDb.Articles
 {
     public class CategoryRepository : MongoDbRepository<Category>
     {
-        public CategoryRepository() : base(new MongoCollectionProvider(), "category")
+        public CategoryRepository() : base(new MongoCollectionProvider<Category>(), "category")
         {
         }
     }

@@ -7,7 +7,7 @@ namespace Timor.Cms.Repository.MongoDb
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<MongoCollectionProvider>().As<IMongoCollectionProvider>();
+            builder.RegisterGeneric(typeof(MongoCollectionProvider<>)).As(typeof(IMongoCollectionProvider<>));
 
             base.Load(builder);
         }

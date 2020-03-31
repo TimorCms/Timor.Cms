@@ -15,17 +15,17 @@ namespace Timor.Cms.Repository.MongoDb.Tests.Articles
         [Fact]
         public async Task ShouldInsertSuccess()
         {
-            Mock<IMongoCollection<Article>> articleCollectionMock = new Mock<IMongoCollection<Article>>();
+            Mock<IMongoCollectionAdapter<Article>> articleCollectionMock = new Mock<IMongoCollectionAdapter<Article>>();
 
-            Mock<IMongoCollectionProvider> collectionProvider = new Mock<IMongoCollectionProvider>();
+            Mock<IMongoCollectionProvider<Article>> collectionProvider = new Mock<IMongoCollectionProvider<Article>>();
 
-            collectionProvider.Setup(p => p.GetCollection<Article>("article")).Returns(articleCollectionMock.Object);
+            collectionProvider.Setup(p => p.GetCollection("article")).Returns(articleCollectionMock.Object);
 
             using var moq = AutoMock.GetLoose((builder) =>
             {
                 RegistModule(builder);
 
-                builder.Register(x => collectionProvider.Object).As<IMongoCollectionProvider>();
+                builder.Register(x => collectionProvider.Object).As<IMongoCollectionProvider<Article>>();
             });
 
             var repository = moq.Create<ArticleRepository>();
@@ -35,7 +35,7 @@ namespace Timor.Cms.Repository.MongoDb.Tests.Articles
             await repository.InsertAsync(article);
 
             // verify InsertOneAsync method have been called once times
-            articleCollectionMock.Verify(c => c.InsertOneAsync(article, null, default), Times.Once());
+            articleCollectionMock.Verify(c => c.InsertOneAsync(It.IsAny<Article>(), null, default), Times.Once);
         }
 
         [Fact]

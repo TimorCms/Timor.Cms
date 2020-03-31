@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -9,16 +10,16 @@ namespace Timor.Cms.Repository.MongoDb
 {
     public abstract class MongoDbRepository<TEntity> where TEntity : Entity<ObjectId>
     {
-        private readonly IMongoCollection<TEntity> _collection;
+        private readonly IMongoCollectionAdapter<TEntity> _collection;
 
-        public MongoDbRepository(IMongoCollectionProvider collectionProvider, string collectionName)
+        public MongoDbRepository(IMongoCollectionProvider<TEntity> collectionProvider, string collectionName)
         {
-            _collection = collectionProvider.GetCollection<TEntity>(collectionName);
+            _collection = collectionProvider.GetCollection(collectionName);
         }
 
         public virtual async Task<TEntity> GetById(ObjectId id)
         {
-            var entity = await _collection.FindSync(a => a.Id == id).FirstOrDefaultAsync();
+            var entity = await _collection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
             return entity;
         }
