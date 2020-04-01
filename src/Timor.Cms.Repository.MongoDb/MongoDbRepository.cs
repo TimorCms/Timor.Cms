@@ -1,20 +1,20 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Timor.Cms.Domains.Entities;
+using Timor.Cms.Repository.MongoDb.Collections;
 
 namespace Timor.Cms.Repository.MongoDb
 {
-    public abstract class MongoDbRepository<TEntity> where TEntity : Entity<ObjectId>
+    public class MongoDbRepository<TEntity> : IMongoDbRepository<TEntity> where TEntity : Entity<ObjectId>
     {
         private readonly IMongoCollectionAdapter<TEntity> _collection;
 
-        public MongoDbRepository(IMongoCollectionProvider<TEntity> collectionProvider, string collectionName)
+        public MongoDbRepository(IMongoCollectionProvider<TEntity> collectionProvider)
         {
-            _collection = collectionProvider.GetCollection(collectionName);
+            _collection = collectionProvider.GetCollection();
         }
 
         public virtual async Task<TEntity> GetById(ObjectId id)

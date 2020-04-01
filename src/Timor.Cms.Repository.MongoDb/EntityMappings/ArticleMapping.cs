@@ -1,13 +1,12 @@
-﻿using MongoDB.Bson.Serialization;
-using Timor.Cms.Domains.Articles;
+﻿using Timor.Cms.Domains.Articles;
 
 namespace Timor.Cms.Repository.MongoDb.EntityMappings
 {
-    public class ArticleMapping : BsonClassMap<Article>
+    public class ArticleMapping : MongoClassMap<Article>
     {
         public ArticleMapping()
         {
-            
+            MapCollectionName("article");
         }
     }
 }

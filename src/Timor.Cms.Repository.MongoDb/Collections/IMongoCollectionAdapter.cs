@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MongoDB.Driver;
 
-namespace Timor.Cms.Repository.MongoDb
+namespace Timor.Cms.Repository.MongoDb.Collections
 {
     public interface IMongoCollectionAdapter<TDocument>
     {

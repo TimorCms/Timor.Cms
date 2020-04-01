@@ -12,8 +12,4 @@
     <ProjectReference Include="..\Timor.Cms.Infrastructure\Timor.Cms.Infrastructure.csproj" />
     <ProjectReference Include="..\Timor.Cms.Domains\Timor.Cms.Domains.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Attributes\" />
-  </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using Moq;
 using Timor.Cms.Domains.Articles;
-using Timor.Cms.Repository.MongoDb.Articles;
+using Timor.Cms.Repository.MongoDb.Collections;
 using Xunit;
 
 namespace Timor.Cms.Repository.MongoDb.Tests.Articles
@@ -26,7 +26,7 @@ namespace Timor.Cms.Repository.MongoDb.Tests.Articles
             Mock<IMongoCollectionProvider<Article>> collectionProvider = new Mock<IMongoCollectionProvider<Article>>();
 
             collectionProvider
-                .Setup(p => p.GetCollection("article"))
+                .Setup(p => p.GetCollection())
                 .Returns(articleCollectionMock.Object);
 
             using var moq = AutoMock.GetLoose((builder) =>
@@ -36,7 +36,7 @@ namespace Timor.Cms.Repository.MongoDb.Tests.Articles
                 builder.Register(x => collectionProvider.Object).As<IMongoCollectionProvider<Article>>();
             });
 
-            var repository = moq.Create<ArticleRepository>();
+            var repository = moq.Create<IMongoDbRepository<Article>>();
 
             try
             {
@@ -53,7 +53,7 @@ namespace Timor.Cms.Repository.MongoDb.Tests.Articles
         [Fact]
         public async Task ShouldReturnNullWhenIdNotExist()
         {
-            var repository = IocManager.Resolve<ArticleRepository>();
+            var repository = IocManager.Resolve<IMongoDbRepository<Article>>();
 
             var result = await repository.GetById(ObjectId.GenerateNewId());
 

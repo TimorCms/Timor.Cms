@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extras.Moq;
-using MongoDB.Driver;
 using Moq;
 using Timor.Cms.Domains.Articles;
-using Timor.Cms.Repository.MongoDb.Articles;
+using Timor.Cms.Repository.MongoDb.Collections;
 using Xunit;
 
 namespace Timor.Cms.Repository.MongoDb.Tests.Articles
@@ -19,7 +18,7 @@ namespace Timor.Cms.Repository.MongoDb.Tests.Articles
 
             Mock<IMongoCollectionProvider<Article>> collectionProvider = new Mock<IMongoCollectionProvider<Article>>();
 
-            collectionProvider.Setup(p => p.GetCollection("article")).Returns(articleCollectionMock.Object);
+            collectionProvider.Setup(p => p.GetCollection()).Returns(articleCollectionMock.Object);
 
             using var moq = AutoMock.GetLoose((builder) =>
             {
@@ -28,7 +27,7 @@ namespace Timor.Cms.Repository.MongoDb.Tests.Articles
                 builder.Register(x => collectionProvider.Object).As<IMongoCollectionProvider<Article>>();
             });
 
-            var repository = moq.Create<ArticleRepository>();
+            var repository = moq.Create<IMongoDbRepository<Article>>();
 
             var article = new Article();
 
@@ -42,7 +41,7 @@ namespace Timor.Cms.Repository.MongoDb.Tests.Articles
         public async Task ShouldInsertFailedWhenArticleNull()
         {
             // Arrange
-            var repository = IocManager.Resolve<ArticleRepository>();
+            var repository = IocManager.Resolve<IMongoDbRepository<Article>>();
 
             var exception = await Assert.ThrowsAsync<ArgumentNullException>(async () =>
               {
