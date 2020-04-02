@@ -13,7 +13,7 @@ namespace Timor.Cms.Repository.MongoDb.Collections.NameResolvers
 
         public string ResolveCollectionName()
         {
-            return _classMap.GetCollectionName();
+            return _classMap?.GetCollectionName();
         }
     }
 }

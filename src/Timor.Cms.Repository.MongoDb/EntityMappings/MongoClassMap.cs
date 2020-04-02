@@ -4,7 +4,7 @@ namespace Timor.Cms.Repository.MongoDb.EntityMappings
 {
     public class MongoClassMap<TEntity> : BsonClassMap<TEntity>
     {
-        private string _collectionName { get; set; }
+        private string _collectionName;
 
         public void MapCollectionName(string collectionName)
         {

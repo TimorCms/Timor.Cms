@@ -4,7 +4,7 @@
     {
         public string ResolveCollectionName()
         {
-            return nameof(TEntity);
+            return typeof(TEntity).Name;
         }
     }
 }

@@ -8,12 +8,14 @@ namespace Timor.Cms.Repository.MongoDb.Collections
     {
         private readonly List<ICollectionNameResolver<TEntity>> _collectionNameResolvers;
 
-        public CollectionNameProvider(MongoClassMap<TEntity> classMap)
+        public virtual MongoClassMap<TEntity> ClassMap { get; set; }
+
+        public CollectionNameProvider()
         {
             _collectionNameResolvers = new List<ICollectionNameResolver<TEntity>>
             {
                 new CollectionNameAttributeResolver<TEntity>(),
-                new CollectionNameClassMapResolver<TEntity>(classMap),
+                new CollectionNameClassMapResolver<TEntity>(ClassMap),
                 new CollectionNameDefaultResolver<TEntity>()
             };
         }
