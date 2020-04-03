@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Timor.Cms.Service</name>
+    </assembly>
+    <members>
+        <member name="P:Timor.Cms.Service.Articles.Dtos.GetArticleById.ArticleOutput.Title">
+            <summary>
+            主标题
+            </summary>
+        </member>
+        <member name="P:Timor.Cms.Service.Articles.Dtos.GetArticleById.ArticleOutput.SubTitle">
+            <summary>
+            副标题
+            </summary>
+        </member>
+        <member name="P:Timor.Cms.Service.Articles.Dtos.GetArticleById.ArticleOutput.ShortDescription">
+            <summary>
+            摘要
+            </summary>
+        </member>
+        <member name="P:Timor.Cms.Service.Articles.Dtos.GetArticleById.ArticleOutput.Content">
+            <summary>
+            文章内容
+            </summary>
+        </member>
+        <member name="P:Timor.Cms.Service.Articles.Dtos.GetArticleById.ArticleOutput.Author">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:Timor.Cms.Service.Articles.Dtos.GetArticleById.ArticleOutput.PublishDate">
+            <summary>
+            发布时间
+            </summary>
+        </member>
+        <member name="P:Timor.Cms.Service.Articles.Dtos.GetArticleById.ArticleOutput.ReferenceUrl">
+            <summary>
+            文章引用来源
+            </summary>
+        </member>
+        <member name="P:Timor.Cms.Service.Articles.Dtos.GetArticleById.ArticleOutput.VisitCount">
+            <summary>
+            访问次数
+            </summary>
+        </member>
+        <member name="P:Timor.Cms.Service.Articles.Dtos.GetArticleById.ArticleOutput.Test1">
+            <summary>
+            测试
+            </summary>
+        </member>
+        <member name="P:Timor.Cms.Service.Articles.Dtos.GetArticleById.ArticleOutput.Test.AAA">
+            <summary>
+            这是一段注释
+            </summary>
+        </member>
+        <member name="P:Timor.Cms.Service.Articles.Dtos.GetArticleById.ArticleOutput.Test.Ad">
+            <summary>
+            广告
+            </summary>
+        </member>
+    </members>
+</doc>

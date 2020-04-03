@@ -2,9 +2,9 @@
 using AutoMapper;
 using MongoDB.Bson;
 using Timor.Cms.Domains.Articles;
+using Timor.Cms.Dto.Articles.GetArticleById;
 using Timor.Cms.Infrastructure.Dependency;
 using Timor.Cms.Repository.MongoDb;
-using Timor.Cms.Service.Articles.Dtos.GetArticleById;
 
 namespace Timor.Cms.Service.Articles
 {

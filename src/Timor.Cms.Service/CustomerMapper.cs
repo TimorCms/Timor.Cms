@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Timor.Cms.Domains.Articles;
-using Timor.Cms.Service.Articles.Dtos.GetArticleById;
+using Timor.Cms.Dto.Articles.GetArticleById;
 
 namespace Timor.Cms.Service
 {

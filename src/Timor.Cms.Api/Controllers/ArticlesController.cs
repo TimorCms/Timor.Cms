@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
+using Timor.Cms.Dto.Articles.GetArticleById;
 using Timor.Cms.Service.Articles;
-using Timor.Cms.Service.Articles.Dtos.GetArticleById;
 
 namespace Timor.Cms.Api.Controllers
 {
@@ -16,6 +16,11 @@ namespace Timor.Cms.Api.Controllers
             _articleService = articleService;
         }
 
+        /// <summary>
+        /// 根据文章ID获取文章
+        /// </summary>
+        /// <param name="id">文章ID</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ArticleOutput> GetArticleById(string id)
         {

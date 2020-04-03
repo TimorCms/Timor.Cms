@@ -5,10 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Timor.Cms.Service.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Timor.Cms.Dto\Timor.Cms.Dto.csproj" />
     <ProjectReference Include="..\Timor.Cms.Infrastructure\Timor.Cms.Infrastructure.csproj" />
     <ProjectReference Include="..\Timor.Cms.Domains\Timor.Cms.Domains.csproj" />
     <ProjectReference Include="..\Timor.Cms.Repository.MongoDb\Timor.Cms.Repository.MongoDb.csproj" />

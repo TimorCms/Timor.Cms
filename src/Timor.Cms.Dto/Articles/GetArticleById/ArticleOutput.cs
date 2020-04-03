@@ -1,10 +1,16 @@
 ﻿using System;
 using MongoDB.Bson;
 
-namespace Timor.Cms.Service.Articles.Dtos.GetArticleById
+namespace Timor.Cms.Dto.Articles.GetArticleById
 {
+    /// <summary>
+    /// 文章
+    /// </summary>
     public class ArticleOutput
     {
+        /// <summary>
+        /// 文章ID
+        /// </summary>
         public ObjectId Id { get; set; }
 
         /// <summary>

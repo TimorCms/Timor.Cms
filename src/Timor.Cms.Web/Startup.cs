@@ -1,11 +1,17 @@
+using System;
+using System.IO;
+using System.Reflection;
 using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using Timor.Cms.Api;
 using Timor.Cms.Domains;
+using Timor.Cms.Dto;
 using Timor.Cms.Infrastructure;
 using Timor.Cms.Infrastructure.Dependency;
 using Timor.Cms.Repository.MongoDb;
@@ -30,6 +36,25 @@ namespace Timor.Cms.Web
                 .AddControllersWithViews()
                 .AddApplicationPart(typeof(ApiModule).Assembly)
                 .AddControllersAsServices();
+
+            services.AddHealthChecks();
+
+            services.AddCors();
+
+            services.AddSwaggerGen(config =>
+            {
+                config.SwaggerDoc("v1", new OpenApiInfo { Title = "Timor Cms Api Documents", Version = "v1" });
+                IncludeXmlComments(config, typeof(DtoModule).Assembly);
+                IncludeXmlComments(config, typeof(ApiModule).Assembly);
+            });
+
+        }
+
+        private static void IncludeXmlComments(SwaggerGenOptions swaggerOption, Assembly assembly)
+        {
+            var apiXmlFile = $"{assembly.GetName().Name}.xml";
+            var apiXmlPath = Path.Combine(AppContext.BaseDirectory, apiXmlFile);
+            swaggerOption.IncludeXmlComments(apiXmlPath);
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -61,7 +86,16 @@ namespace Timor.Cms.Web
             app.UseStaticFiles();
             app.UseRouting();
 
+            app.UseCors(config =>
+            {
+                config.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin();
+            });
+
             app.UseAuthorization();
+
+            app.UseSwagger(option => { option.SerializeAsV2 = true; });
 
             app.UseEndpoints(endpoints =>
             {
@@ -69,8 +103,12 @@ namespace Timor.Cms.Web
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+                endpoints.MapHealthChecks("/health-check");
+
                 endpoints.MapControllers();
             });
+
+           
         }
     }
 }

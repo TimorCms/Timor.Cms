@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.3.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Timor.Cms.Service\Timor.Cms.Service.csproj">
@@ -19,5 +20,8 @@
     <ProjectReference Include="..\Timor.Cms.Api\Timor.Cms.Api.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\swagger\" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,12 @@
     <TargetFramework>netcoreapp5.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>\bin\Debug\netcoreapp5.0\Timor.Cms.Api.xml</DocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <OutputPath></OutputPath>
+  </PropertyGroup>
+
 
   <ItemGroup>
     <ProjectReference Include="..\Timor.Cms.Service\Timor.Cms.Service.csproj">
