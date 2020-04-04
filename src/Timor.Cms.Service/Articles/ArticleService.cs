@@ -21,7 +21,7 @@ namespace Timor.Cms.Service.Articles
 
         public async Task<ArticleOutput> GetArticleById(ObjectId id)
         {
-            var article = await _articleRepository.GetById(id);
+            var article = await _articleRepository.GetByIdAsync(id);
 
             return _mapper.Map<ArticleOutput>(article);
         }

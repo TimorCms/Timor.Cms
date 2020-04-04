@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Timor.Cms.Domains\Timor.Cms.Domains.csproj" />
     <ProjectReference Include="..\..\src\Timor.Cms.Repository.MongoDb\Timor.Cms.Repository.MongoDb.csproj" />
+    <ProjectReference Include="..\Timor.Cms.Test.Infrastructure\Timor.Cms.Test.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

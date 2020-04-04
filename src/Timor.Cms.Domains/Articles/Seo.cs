@@ -1,8 +1,9 @@
 ﻿using System;
+using Timor.Cms.Domains.Entities;
 
 namespace Timor.Cms.Domains.Articles
 {
-    public class Seo
+    public class Seo : AuditingEntity
     {
 
         /// <summary>

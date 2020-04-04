@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.0.0" />
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Timor.Cms.Domains\Timor.Cms.Domains.csproj" />
+    <ProjectReference Include="..\..\src\Timor.Cms.Infrastructure\Timor.Cms.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

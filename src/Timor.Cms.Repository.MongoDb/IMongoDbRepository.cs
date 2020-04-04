@@ -7,7 +7,7 @@ namespace Timor.Cms.Repository.MongoDb
 {
     public interface IMongoDbRepository<TEntity> where TEntity : Entity<ObjectId>
     {
-        Task<TEntity> GetById(ObjectId id);
+        Task<TEntity> GetByIdAsync(ObjectId id);
         Task InsertAsync(TEntity entity);
         Task UpdateAsync(TEntity entity);
         Task DeleteAsync(ObjectId id);

@@ -17,7 +17,7 @@ namespace Timor.Cms.Repository.MongoDb
             _collection = collectionProvider.GetCollection();
         }
 
-        public virtual async Task<TEntity> GetById(ObjectId id)
+        public virtual async Task<TEntity> GetByIdAsync(ObjectId id)
         {
             var entity = await _collection.Find(x => x.Id == id).FirstOrDefaultAsync();
 

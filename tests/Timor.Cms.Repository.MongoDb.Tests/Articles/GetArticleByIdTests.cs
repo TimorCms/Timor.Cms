@@ -40,7 +40,7 @@ namespace Timor.Cms.Repository.MongoDb.Tests.Articles
 
             try
             {
-                await repository.GetById(ObjectId.GenerateNewId());
+                await repository.GetByIdAsync(ObjectId.GenerateNewId());
             }
             catch
             {
@@ -55,7 +55,7 @@ namespace Timor.Cms.Repository.MongoDb.Tests.Articles
         {
             var repository = IocManager.Resolve<IMongoDbRepository<Article>>();
 
-            var result = await repository.GetById(ObjectId.GenerateNewId());
+            var result = await repository.GetByIdAsync(ObjectId.GenerateNewId());
 
             Assert.Null(result);
         }
