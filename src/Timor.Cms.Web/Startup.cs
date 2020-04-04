@@ -72,7 +72,7 @@ namespace Timor.Cms.Web
 
                         ValidateLifetime = true,
 
-                        ClockSkew = TimeSpan.FromSeconds(300)
+                        ClockSkew = TimeSpan.FromSeconds(30)
                     };
                 });
 
@@ -85,6 +85,15 @@ namespace Timor.Cms.Web
                 config.SwaggerDoc("v1", new OpenApiInfo { Title = "Timor Cms Api Documents", Version = "v1" });
                 IncludeXmlComments(config, typeof(DtoModule).Assembly);
                 IncludeXmlComments(config, typeof(ApiModule).Assembly);
+
+                config.AddSecurityDefinition("JwtToken",new OpenApiSecurityScheme
+                {
+                    Description = "通过Jwt Token进行授权,Token需要手动带上Bearer哦~",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = JwtBearerDefaults.AuthenticationScheme
+                });
             });
 
         }
