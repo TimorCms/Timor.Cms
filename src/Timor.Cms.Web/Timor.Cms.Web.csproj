@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="IdentityModel" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.0-preview.2.20167.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.3.0" />
   </ItemGroup>
   <ItemGroup>

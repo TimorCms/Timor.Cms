@@ -1,18 +1,23 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using Autofac;
+using IdentityModel;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Timor.Cms.Api;
 using Timor.Cms.Domains;
 using Timor.Cms.Dto;
 using Timor.Cms.Infrastructure;
+using Timor.Cms.Infrastructure.Configuration;
 using Timor.Cms.Infrastructure.Dependency;
 using Timor.Cms.Repository.MongoDb;
 using Timor.Cms.Service;
@@ -38,6 +43,40 @@ namespace Timor.Cms.Web
                 .AddControllersAsServices();
 
             services.AddHealthChecks();
+
+            services.Configure<JwtOption>(Configuration.GetSection("JwtOption"));
+
+            var jwtOption = Configuration.GetSection("JwtOption").Get<JwtOption>();
+
+            services.AddAuthentication(x =>
+                {
+                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(option =>
+                {
+                    option.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        NameClaimType = JwtClaimTypes.Name,
+
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtOption.SecurityKey)),
+
+                        // Validate the JWT Issuer (iss) claim
+                        ValidateIssuer = true,
+                        ValidIssuer = jwtOption.Issuer,
+
+                        // Validate the JWT Audience (aud) claim
+                        ValidateAudience = true,
+                        ValidAudience = jwtOption.Audience,
+
+                        ValidateLifetime = true,
+
+                        ClockSkew = TimeSpan.FromSeconds(300)
+                    };
+                });
+
+            services.AddAuthorization();
 
             services.AddCors();
 
@@ -83,8 +122,14 @@ namespace Timor.Cms.Web
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
+
             app.UseRouting();
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseCors(config =>
             {
@@ -92,8 +137,6 @@ namespace Timor.Cms.Web
                     .AllowAnyMethod()
                     .AllowAnyOrigin();
             });
-
-            app.UseAuthorization();
 
             app.UseSwagger(option => { option.SerializeAsV2 = true; });
 
@@ -108,7 +151,7 @@ namespace Timor.Cms.Web
                 endpoints.MapControllers();
             });
 
-           
+
         }
     }
 }

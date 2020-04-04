@@ -7,7 +7,7 @@ using Timor.Cms.Service.Articles;
 namespace Timor.Cms.Api.Controllers
 {
     [Route("api/v1/articles")]
-    public class ArticlesController : ControllerBase
+    public class ArticlesController : Controller
     {
         private ArticleService _articleService;
 
