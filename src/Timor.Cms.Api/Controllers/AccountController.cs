@@ -16,7 +16,7 @@ namespace Timor.Cms.Api.Controllers
     [Route("/api/v1/accounts")]
     public class AccountController : Controller
     {
-        private JwtOption _jwtOption;
+        private readonly JwtOption _jwtOption;
 
         public AccountController(IOptionsMonitor<JwtOption> option)
         {
@@ -42,6 +42,8 @@ namespace Timor.Cms.Api.Controllers
             TimeSpan tokenExpirationDate = TimeSpan.FromDays(1);
 
             var jwtToken = GenerateJwtToken(claims, tokenExpirationDate);
+
+            await Task.CompletedTask;
 
             return new LoginResult
             {
