@@ -28,11 +28,8 @@ namespace Timor.Cms.Service.Attachments
         public async Task<bool> CheckAttachmentExist(ObjectId id)
         {
             var attachment = await _attachmentRepository.GetByIdAsync(id);
-            if (attachment == null)
-            {
-                return false;
-            }
-            return true;
+
+            return attachment != null;
         }
     }
 }

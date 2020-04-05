@@ -38,7 +38,7 @@ namespace Timor.Cms.Service.Articles
 
             foreach (var attachmentId in attachmentIds)
             {
-                if (await _attachmentService.CheckAttachmentExist(attachmentId))
+                if (!await _attachmentService.CheckAttachmentExist(attachmentId))
                 {
                     return;
                 }
