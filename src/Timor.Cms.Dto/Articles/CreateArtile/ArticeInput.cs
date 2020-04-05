@@ -40,7 +40,7 @@ namespace Timor.Cms.Dto.Articles.CreateArtile
         /// <summary>
         /// 附件 
         /// </summary>
-        public List<ObjectId> Attachments { get; set; }
+        public List<ObjectId> AttachmentIds { get; set; }
 
         /// <summary>
         /// 作者
