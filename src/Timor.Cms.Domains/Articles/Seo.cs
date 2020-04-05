@@ -12,6 +12,11 @@ namespace Timor.Cms.Domains.Articles
         public string Uri { get; set; }
 
         /// <summary>
+        /// 定制页面Title
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
         /// Meta Keywords
         /// </summary>
         public string KeyWords { get; set; }
