@@ -23,3 +23,11 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal --filter "FullyQualifiedName!~Integration"
+  sonar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sonar Scan
+        uses: SonarSource/sonarcloud-github-action@v1.1     
+        env:
+          GITHUB_TOKEN: ${{GITHUB_TOKEN}}
+          SONAR_TOKEN: ${{sonar_token}}          
