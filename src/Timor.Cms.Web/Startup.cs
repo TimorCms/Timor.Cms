@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using Autofac;
+using FluentValidation.AspNetCore;
 using IdentityModel;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -40,7 +41,8 @@ namespace Timor.Cms.Web
             services
                 .AddControllersWithViews()
                 .AddApplicationPart(typeof(ApiModule).Assembly)
-                .AddControllersAsServices();
+                .AddControllersAsServices()
+                .AddFluentValidation();
 
             services.AddHealthChecks();
 
@@ -111,6 +113,7 @@ namespace Timor.Cms.Web
                 typeof(InfrastructureModule),
                 typeof(DomainModule),
                 typeof(MongoDbRepositoryModule),
+                typeof(DtoModule),
                 typeof(ServiceModule),
                 typeof(ApiModule),
                 typeof(WebModule));

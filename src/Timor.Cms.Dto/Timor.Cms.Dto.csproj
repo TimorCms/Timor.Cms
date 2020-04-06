@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.0.0-preview3" />
     <PackageReference Include="MongoDB.Bson" Version="2.10.2" />
   </ItemGroup>
 
