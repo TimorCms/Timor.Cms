@@ -2,6 +2,9 @@
 
 Timor CMS 是一款非常轻量级的内容管理系统，它不支持过多花里胡哨的功能，只会支持最基本的文章及分类的管理。
 
+## 构建状态
+![Timor CMS CI](https://github.com/TimorCms/Timor.Cms/workflows/Timor%20CMS%20CI/badge.svg)
+
 ## 技术栈
 
 - 前端页面及API：.NET Core  5.0 Preview (后续会持续升级到最新版的.NET Core)
