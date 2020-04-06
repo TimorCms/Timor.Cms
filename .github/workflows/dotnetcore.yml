@@ -27,6 +27,7 @@ jobs:
   sonar:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Sonar Scan
         uses: SonarSource/sonarcloud-github-action@v1.1     
         env:
