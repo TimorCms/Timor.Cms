@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MongoDB.Bson;
 using Timor.Cms.Domains.Ads;
 using Timor.Cms.Domains.Entities;
 
@@ -56,6 +57,11 @@ namespace Timor.Cms.Domains.Articles
         /// 访问次数
         /// </summary>
         public int VisitCount { get; set; }
+
+        /// <summary>
+        /// 分类ID
+        /// </summary>
+        public IList<ObjectId> CategoryIds { get; set; }
 
         /// <summary>
         /// 文章分类
