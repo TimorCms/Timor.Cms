@@ -12,6 +12,6 @@ namespace Timor.Cms.Repository.MongoDb
         Task UpdateAsync(TEntity entity);
         Task DeleteAsync(ObjectId id);
         Task DeleteAsync(TEntity entity);
-        Task DeleteMultipleAsync(List<ObjectId> ids);
+        Task DeleteMultipleAsync(IEnumerable<ObjectId> ids);
     }
 }
