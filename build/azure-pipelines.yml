@@ -14,13 +14,12 @@ variables:
 
 steps:
 - task: SonarCloudPrepare@1
-  displayName: 'Prepare analysis configuration'
   inputs:
-    SonarCloud: 'SonarCloud'
-    organization: 'TimorCms'
+    SonarCloud: 'sonarcould'
+    organization: 'timorcms'
     scannerMode: 'MSBuild'
-    projectKey: 'timor-cms'
-    projectName: 'Timor.Cms'
+    projectKey: 'TimorCms_Timor.Cms'
+    projectName: 'TimorCms'
 
 - task: UseDotNet@2
   inputs:
