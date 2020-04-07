@@ -21,3 +21,14 @@ steps:
 
 - script: dotnet test --no-restore --verbosity normal --filter "FullyQualifiedName!~Integration"
   displayName: 'Unit Test'
+
+- task: VSTest@2
+  inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\*test*.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+    
+- task: SonarCloudAnalyze@1
