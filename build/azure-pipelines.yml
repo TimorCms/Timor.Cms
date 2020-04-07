@@ -12,6 +12,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
+
 steps:
 - task: DotNetCoreInstaller@0
   displayName: 'Use .NET Core SDK 2.2.103 For Sonar Cloud'
@@ -36,10 +37,6 @@ steps:
 - script: dotnet test --no-restore --verbosity normal --filter "FullyQualifiedName!~Integration"
   displayName: 'Unit Test'
 
-- task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core SDK 2.2.103 For Sonar Cloud'
-  inputs:
-    version: '2.2.103'
     
 - task: SonarCloudAnalyze@1
   displayName: 'Run SonarCloud analysis'
@@ -48,4 +45,5 @@ steps:
   displayName: 'Publish results on build summary'
   inputs:
     pollingTimeoutSec: '300'
-        
+
+    
