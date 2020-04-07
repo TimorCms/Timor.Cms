@@ -13,6 +13,15 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: SonarCloudPrepare@1
+  displayName: 'Prepare analysis configuration'
+  inputs:
+    SonarCloud: 'SonarCloud'
+    organization: 'TimorCms'
+    scannerMode: 'MSBuild'
+    projectKey: 'timor-cms'
+    projectName: 'Timor.Cms'
+
 - task: UseDotNet@2
   inputs:
     version: '5.0.100-preview.1.20155.7'
@@ -21,14 +30,11 @@ steps:
 
 - script: dotnet test --no-restore --verbosity normal --filter "FullyQualifiedName!~Integration"
   displayName: 'Unit Test'
-
-- task: VSTest@2
-  inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*test*.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
     
 - task: SonarCloudAnalyze@1
+  displayName: 'Run SonarCloud analysis'
+
+- task: SonarCloudPublish@1
+  displayName: 'Publish results on build summary'
+  inputs:
+    pollingTimeoutSec: '300'
