@@ -25,6 +25,7 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'TimorCms_Timor.Cms'
     projectName: 'TimorCms'
+    extraProperties: 'sonar.exclusions=**/swagger/**'
 
 - task: UseDotNet@2
   inputs:
@@ -47,3 +48,4 @@ steps:
   displayName: 'Publish results on build summary'
   inputs:
     pollingTimeoutSec: '300'
+        
