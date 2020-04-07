@@ -13,6 +13,18 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core SDK 2.2.103 For Sonar Cloud'
+  inputs:
+    version: '2.2.103'
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonarcould'
+    organization: 'timorcms'
+    scannerMode: 'MSBuild'
+    projectKey: 'TimorCms_Timor.Cms'
+    projectName: 'TimorCms'
 
 - task: UseDotNet@2
   inputs:
@@ -23,14 +35,11 @@ steps:
 - script: dotnet test --no-restore --verbosity normal --filter "FullyQualifiedName!~Integration"
   displayName: 'Unit Test'
 
-- task: SonarCloudPrepare@1
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core SDK 2.2.103 For Sonar Cloud'
   inputs:
-    SonarCloud: 'sonarcould'
-    organization: 'timorcms'
-    scannerMode: 'MSBuild'
-    projectKey: 'TimorCms_Timor.Cms'
-    projectName: 'TimorCms'
-
+    version: '2.2.103'
+    
 - task: SonarCloudAnalyze@1
   displayName: 'Run SonarCloud analysis'
 
