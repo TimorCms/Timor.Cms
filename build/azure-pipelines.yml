@@ -13,13 +13,6 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: SonarCloudPrepare@1
-  inputs:
-    SonarCloud: 'sonarcould'
-    organization: 'timorcms'
-    scannerMode: 'MSBuild'
-    projectKey: 'TimorCms_Timor.Cms'
-    projectName: 'TimorCms'
 
 - task: UseDotNet@2
   inputs:
@@ -29,8 +22,17 @@ steps:
 
 - script: dotnet test --no-restore --verbosity normal --filter "FullyQualifiedName!~Integration"
   displayName: 'Unit Test'
-    
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonarcould'
+    organization: 'timorcms'
+    scannerMode: 'MSBuild'
+    projectKey: 'TimorCms_Timor.Cms'
+    projectName: 'TimorCms'
+
 - task: SonarCloudAnalyze@1
+  inputs:
   displayName: 'Run SonarCloud analysis'
 
 - task: SonarCloudPublish@1
