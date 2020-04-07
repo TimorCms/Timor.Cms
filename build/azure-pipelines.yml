@@ -32,7 +32,6 @@ steps:
     projectName: 'TimorCms'
 
 - task: SonarCloudAnalyze@1
-  inputs:
   displayName: 'Run SonarCloud analysis'
 
 - task: SonarCloudPublish@1
