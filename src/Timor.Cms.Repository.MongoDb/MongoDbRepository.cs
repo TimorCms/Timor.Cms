@@ -29,7 +29,7 @@ namespace Timor.Cms.Repository.MongoDb
         {
             if (entity == null)
             {
-                throw new ArgumentNullException(nameof(entity), "²åÈëÊ§°Ü!Ô­Òò£º²ÎÊý²»ÄÜÎª¿Õ¡£");
+                throw new ArgumentNullException(nameof(entity), "æ’å…¥å¤±è´¥!åŽŸå› ï¼šå‚æ•°ä¸èƒ½ä¸ºç©ºã€‚");
             }
 
             if (entity is AuditingEntity auditingEntity)
@@ -44,14 +44,14 @@ namespace Timor.Cms.Repository.MongoDb
         {
             if (entity == null)
             {
-                throw new ArgumentNullException(nameof(entity), "¸üÐÂÊ§°Ü!Ô­Òò£º²ÎÊý²»ÄÜÎª¿Õ¡£");
+                throw new ArgumentNullException(nameof(entity), "æ›´æ–°å¤±è´¥!åŽŸå› ï¼šå‚æ•°ä¸èƒ½ä¸ºç©ºã€‚");
             }
 
             var result = await _collection.ReplaceOneAsync(x => x.Id == entity.Id, entity);
 
             if (result.MatchedCount < 1)
             {
-                throw new KeyNotFoundException("¸üÐÂÊ§°Ü£¬Î´ÕÒµ½Òª¸üÐÂµÄÊý¾Ý¡£");
+                throw new KeyNotFoundException("æ›´æ–°å¤±è´¥ï¼Œæœªæ‰¾åˆ°è¦æ›´æ–°çš„æ•°æ®ã€‚");
             }
         }
 
@@ -62,7 +62,7 @@ namespace Timor.Cms.Repository.MongoDb
 
             if (result.DeletedCount < 1)
             {
-                throw new KeyNotFoundException("¸üÐÂÊ§°Ü£¬Î´ÕÒµ½Òª¸üÐÂµÄÊý¾Ý¡£");
+                throw new KeyNotFoundException("æ›´æ–°å¤±è´¥ï¼Œæœªæ‰¾åˆ°è¦æ›´æ–°çš„æ•°æ®ã€‚");
             }
         }
 
@@ -70,7 +70,7 @@ namespace Timor.Cms.Repository.MongoDb
         {
             if (entity == null)
             {
-                throw new ArgumentNullException(nameof(entity), "É¾³ýÊ§°Ü£¬Î´ÕÒµ½ÒªÉ¾³ýµÄÊý¾Ý");
+                throw new ArgumentNullException(nameof(entity), "åˆ é™¤å¤±è´¥ï¼Œæœªæ‰¾åˆ°è¦åˆ é™¤çš„æ•°æ®");
             }
 
             await DeleteAsync(entity.Id);

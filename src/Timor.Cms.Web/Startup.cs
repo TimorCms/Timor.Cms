@@ -15,6 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Timor.Cms.Api;
+using Timor.Cms.Api.Filters;
 using Timor.Cms.Domains;
 using Timor.Cms.Dto;
 using Timor.Cms.Infrastructure;
@@ -39,7 +40,7 @@ namespace Timor.Cms.Web
         {
             services.AddOptions();
             services
-                .AddControllersWithViews()
+                .AddControllersWithViews(options => { options.Filters.Add(typeof(ValidationFilter)); })
                 .AddApplicationPart(typeof(ApiModule).Assembly)
                 .AddControllersAsServices()
                 .AddFluentValidation();
@@ -90,7 +91,7 @@ namespace Timor.Cms.Web
 
                 config.AddSecurityDefinition("JwtToken",new OpenApiSecurityScheme
                 {
-                    Description = "通过Jwt Token进行授权,Token需要手动带上Bearer哦~",
+                    Description = "閫氳繃Jwt Token杩涜鎺堟潈,Token闇�瑕佹墜鍔ㄥ甫涓夿earer鍝",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,

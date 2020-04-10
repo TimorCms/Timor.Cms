@@ -1,0 +1,56 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+
+steps:
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core SDK 2.2.103 For Sonar Cloud'
+  inputs:
+    version: '2.2.103'
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonarcould'
+    organization: 'timorcms'
+    scannerMode: 'MSBuild'
+    projectKey: 'TimorCms_Timor.Cms'
+    projectName: 'TimorCms'
+    extraProperties: 'sonar.exclusions=**/wwwroot/**'
+
+- task: UseDotNet@2
+  inputs:
+    version: '5.0.100-preview.1.20155.7'
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'Build'
+
+
+- script: dotnet test --no-restore --verbosity normal --filter "FullyQualifiedName!~Integration"
+  displayName: 'Unit Test'
+
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core SDK 2.2.103 For Sonar Cloud'
+  inputs:
+    version: '2.2.103'
+
+- task: SonarCloudAnalyze@1
+  displayName: 'Run SonarCloud analysis'
+
+- task: SonarCloudPublish@1
+  displayName: 'Publish results on build summary'
+  inputs:
+    pollingTimeoutSec: '300'
+
+
+
+
