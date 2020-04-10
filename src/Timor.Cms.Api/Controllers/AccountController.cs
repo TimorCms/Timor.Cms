@@ -16,10 +16,12 @@ namespace Timor.Cms.Api.Controllers
     [Route("/api/v1/accounts")]
     public class AccountController : Controller
     {
-        private JwtOption _jwtOption;
+        private readonly JwtOption _jwtOption;
+        private readonly SigningCredentials _signingCredentials;
 
-        public AccountController(IOptionsMonitor<JwtOption> option)
+        public AccountController(IOptionsMonitor<JwtOption> option, SigningCredentials signingCredentials)
         {
+            _signingCredentials = signingCredentials;
             _jwtOption = option.CurrentValue;
         }
 
@@ -56,16 +58,13 @@ namespace Timor.Cms.Api.Controllers
         {
             var now = DateTime.Now;
 
-            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtOption.SecurityKey));
-            var sign = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
             var securityToken = new JwtSecurityToken(
                 issuer: _jwtOption.Issuer,
                 audience: _jwtOption.Audience,
                 claims: claims,
                 notBefore: now,
                 expires: now.Add(tokenExpirationDate),
-                signingCredentials: sign
+                signingCredentials: _signingCredentials
             );
 
             var jwtToken = new JwtSecurityTokenHandler().WriteToken(securityToken);
