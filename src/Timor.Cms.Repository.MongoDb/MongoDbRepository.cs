@@ -32,6 +32,11 @@ namespace Timor.Cms.Repository.MongoDb
                 throw new ArgumentNullException(nameof(entity), "插入失败!原因：参数不能为空。");
             }
 
+            if (entity is AuditingEntity auditingEntity)
+            {
+                auditingEntity.CreateTime = DateTime.Now;
+            }
+
             await _collection.InsertOneAsync(entity);
         }
 
@@ -65,7 +70,7 @@ namespace Timor.Cms.Repository.MongoDb
         {
             if (entity == null)
             {
-                throw new ArgumentNullException(nameof(entity),"删除失败，未找到要删除的数据");
+                throw new ArgumentNullException(nameof(entity), "删除失败，未找到要删除的数据");
             }
 
             await DeleteAsync(entity.Id);

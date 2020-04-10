@@ -41,5 +41,15 @@ namespace Timor.Cms.Repository.MongoDb.IntegrationTests.MongoDbRepository
             // Assert
             Assert.NotNull(exception.Message);
         }
+
+        [Fact]
+        public async Task ShouldAutoFillCreateTime()
+        {
+            var article = ArticleBuilder.Build(a => { a.CreateTime = DateTime.Now.AddYears(-10); });
+
+            await _repository.InsertAsync(article);
+
+            article.CreateTime.Date.Should().Be(DateTime.Now.Date);
+        }
     }
 }
