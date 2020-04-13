@@ -4,10 +4,9 @@
     <TargetFramework>netcoreapp5.0</TargetFramework>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin/Debug/netcoreapp5.0/Timor.Cms.Api.xml</DocumentationFile>
+  <PropertyGroup>
+      <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
-    <OutputPath></OutputPath>
   </PropertyGroup>
 
 
