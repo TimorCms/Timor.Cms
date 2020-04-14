@@ -1,9 +1,8 @@
-﻿using System;
-using Timor.Cms.Domains.Entities;
+﻿using Timor.Cms.PersistModels.MongoDb.Entities;
 
-namespace Timor.Cms.Domains.Articles
+namespace Timor.Cms.PersistModels.MongoDb.Articles
 {
-    public class Attachment : DomainEntityBase
+    public class Attachment : MongoEntityBase
     {
         /// <summary>
         /// 附件显示名称

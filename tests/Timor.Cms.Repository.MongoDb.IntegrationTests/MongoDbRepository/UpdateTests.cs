@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Autofac;
 using FluentAssertions;
-using Timor.Cms.Domains.Articles;
+using Timor.Cms.PersistModels.MongoDb.Articles;
 using Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Articles;
 using Xunit;
 
@@ -21,7 +21,7 @@ namespace Timor.Cms.Repository.MongoDb.IntegrationTests.MongoDbRepository
         [Fact]
         public async Task ShouldUpdateSuccess()
         {
-            var article = ArticleBuilder.Build();
+            var article = Mapper.Map<Article>(ArticleBuilder.Build());
 
             await _repository.InsertAsync(article);
 
@@ -50,7 +50,7 @@ namespace Timor.Cms.Repository.MongoDb.IntegrationTests.MongoDbRepository
         {
             var exception = await Assert.ThrowsAsync<KeyNotFoundException>(async () =>
             {
-                await _repository.UpdateAsync(ArticleBuilder.Build());
+                await _repository.UpdateAsync(Mapper.Map<Article>(ArticleBuilder.Build()));
             });
 
             Assert.NotNull(exception.Message);

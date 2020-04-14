@@ -3,9 +3,10 @@ using System.Threading.Tasks;
 using Autofac;
 using FluentAssertions;
 using MongoDB.Bson;
-using Timor.Cms.Domains.Articles;
+using Timor.Cms.PersistModels.MongoDb.Articles;
 using Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Articles;
 using Xunit;
+using AutoMapper;
 
 namespace Timor.Cms.Repository.MongoDb.IntegrationTests.MongoDbRepository
 {
@@ -21,9 +22,9 @@ namespace Timor.Cms.Repository.MongoDb.IntegrationTests.MongoDbRepository
         [Fact]
         public async Task ShouldDeleteSuccess()
         {
-            var entity1 = ArticleBuilder.Build();
+            var entity1 = Mapper.Map<Article>(ArticleBuilder.Build());
 
-            var entity2 = ArticleBuilder.Build();
+            var entity2 = Mapper.Map<Article>(ArticleBuilder.Build());
 
             await _repository.InsertAsync(entity1);
             await _repository.InsertAsync(entity2);
@@ -43,7 +44,7 @@ namespace Timor.Cms.Repository.MongoDb.IntegrationTests.MongoDbRepository
         [Fact]
         public async Task ShouldDeleteSuccessWhenPartOfIdNotExist()
         {
-            var entity = ArticleBuilder.Build();
+            var entity = Mapper.Map<Article>(ArticleBuilder.Build());
 
             await _repository.InsertAsync(entity);
 

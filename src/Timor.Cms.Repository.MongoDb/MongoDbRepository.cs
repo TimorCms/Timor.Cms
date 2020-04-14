@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Timor.Cms.Domains.Entities;
+using Timor.Cms.PersistModels.MongoDb.Entities;
 using Timor.Cms.Repository.MongoDb.Collections;
 
 namespace Timor.Cms.Repository.MongoDb
 {
-    public class MongoDbRepository<TEntity> : IMongoDbRepository<TEntity> where TEntity : Entity<ObjectId>
+    public class MongoDbRepository<TEntity> : IMongoDbRepository<TEntity> where TEntity : MongoEntityBase
     {
         private readonly IMongoCollectionAdapter<TEntity> _collection;
 
@@ -32,7 +33,7 @@ namespace Timor.Cms.Repository.MongoDb
                 throw new ArgumentNullException(nameof(entity), "插入失败!原因：参数不能为空。");
             }
 
-            if (entity is AuditingEntity auditingEntity)
+            if (entity is AuditingDomainEntityBase auditingEntity)
             {
                 auditingEntity.CreateTime = DateTime.Now;
             }

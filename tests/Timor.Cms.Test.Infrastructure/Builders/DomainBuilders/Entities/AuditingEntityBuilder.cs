@@ -6,12 +6,12 @@ namespace Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Entities
 {
     public class AuditingEntityBuilder
     {
-        public static void PopulateAuditingInfo(AuditingEntity entity, Action<AuditingEntity> modifier = null)
+        public static void PopulateAuditingInfo(AuditingDomainEntityBase domainEntityBase, Action<AuditingDomainEntityBase> modifier = null)
         {
-            entity.Id = ObjectId.GenerateNewId();
-            entity.CreateTime = DateTime.Now.AddMonths(2);
-            entity.LastModifyTime = DateTime.Now.AddDays(7);
-            entity.IsDelete = false;
+            domainEntityBase.Id = ObjectId.GenerateNewId().ToString();
+            domainEntityBase.CreateTime = DateTime.Now.AddMonths(2);
+            domainEntityBase.LastModifyTime = DateTime.Now.AddDays(7);
+            domainEntityBase.IsDelete = false;
         }
     }
 }

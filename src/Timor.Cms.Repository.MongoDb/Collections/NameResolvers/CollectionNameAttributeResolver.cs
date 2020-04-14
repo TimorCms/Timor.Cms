@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Timor.Cms.Repository.MongoDb.Attributes;
+using Timor.Cms.Infrastructure.Attributes;
 
 namespace Timor.Cms.Repository.MongoDb.Collections.NameResolvers
 {
@@ -7,7 +7,7 @@ namespace Timor.Cms.Repository.MongoDb.Collections.NameResolvers
     {
         public string ResolveCollectionName()
         {
-            var collectionAttribute = typeof(TEntity).GetCustomAttribute<MogoCollectionAttribute>();
+            var collectionAttribute = typeof(TEntity).GetCustomAttribute<MongoCollectionAttribute>();
 
             return collectionAttribute?.CollectionName;
         }

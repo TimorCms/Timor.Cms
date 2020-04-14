@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Timor.Cms.Repository.MongoDb.Attributes;
+using Timor.Cms.Infrastructure.Attributes;
 using Timor.Cms.Repository.MongoDb.Collections.NameResolvers;
 using Xunit;
 
@@ -7,7 +7,7 @@ namespace Timor.Cms.Repository.MongoDb.Tests.Collections.NameResolvers
 {
     public class CollectionNameAttributeResolverTests
     {
-        [MogoCollection("test")]
+        [MongoCollection("test")]
         public class HasCollectionAttribute
         {
 

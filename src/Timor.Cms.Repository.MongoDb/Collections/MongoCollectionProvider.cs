@@ -2,11 +2,12 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Timor.Cms.Domains.Entities;
+using Timor.Cms.PersistModels.MongoDb.Entities;
 
 
 namespace Timor.Cms.Repository.MongoDb.Collections
 {
-    public class MongoCollectionProvider<TEntity> : IMongoCollectionProvider<TEntity> where TEntity : Entity<ObjectId>
+    public class MongoCollectionProvider<TEntity> : IMongoCollectionProvider<TEntity> where TEntity : MongoEntityBase
     {
         private ICollectionNameProvider<TEntity> _collectionNameProvider;
         //private IConfiguration _configuration;

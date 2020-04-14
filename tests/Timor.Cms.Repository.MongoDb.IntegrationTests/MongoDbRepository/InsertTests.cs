@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Autofac;
 using FluentAssertions;
-using Timor.Cms.Domains.Articles;
+using Timor.Cms.PersistModels.MongoDb.Articles;
 using Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Articles;
 using Xunit;
 
@@ -20,7 +20,7 @@ namespace Timor.Cms.Repository.MongoDb.IntegrationTests.MongoDbRepository
         [Fact]
         public async Task ShouldInsertSuccess()
         {
-            var article = ArticleBuilder.Build();
+            var article = Mapper.Map<Article>(ArticleBuilder.Build());
 
             await _repository.InsertAsync(article);
 
@@ -45,7 +45,7 @@ namespace Timor.Cms.Repository.MongoDb.IntegrationTests.MongoDbRepository
         [Fact]
         public async Task ShouldAutoFillCreateTime()
         {
-            var article = ArticleBuilder.Build(a => { a.CreateTime = DateTime.Now.AddYears(-10); });
+            var article = Mapper.Map<Article>(ArticleBuilder.Build(a => { a.CreateTime = DateTime.Now.AddYears(-10); }));
 
             await _repository.InsertAsync(article);
 

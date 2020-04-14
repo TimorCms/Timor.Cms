@@ -1,8 +1,8 @@
-﻿using Timor.Cms.Domains.Entities;
+﻿using Timor.Cms.PersistModels.MongoDb.Entities;
 
-namespace Timor.Cms.Domains.Users
+namespace Timor.Cms.PersistModels.MongoDb.Users
 {
-    public class User : AuditingDomainEntityBase
+    public class User : AuditingMongoEntityBase
     {
         /// <summary>
         /// 用户名

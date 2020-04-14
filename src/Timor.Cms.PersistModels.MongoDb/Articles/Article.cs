@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
+using AutoMapper;
 using MongoDB.Bson;
-using Timor.Cms.Domains.Ads;
-using Timor.Cms.Domains.Entities;
+using Timor.Cms.Infrastructure.Attributes;
+using Timor.Cms.PersistModels.MongoDb.Ads;
+using Timor.Cms.PersistModels.MongoDb.Entities;
 
-namespace Timor.Cms.Domains.Articles
+namespace Timor.Cms.PersistModels.MongoDb.Articles
 {
-    public class Article : AuditingDomainEntityBase
+    [MongoCollection("articles")]
+    public class Article : AuditingMongoEntityBase
     {
         public Article()
         {
@@ -62,11 +65,6 @@ namespace Timor.Cms.Domains.Articles
         /// 分类ID
         /// </summary>
         public IList<ObjectId> CategoryIds { get; set; }
-
-        /// <summary>
-        /// 文章分类
-        /// </summary>
-        public IList<Category> Categories { get; set; }
 
         /// <summary>
         /// 文章的广告列表，针对文章而显示的一些Banner

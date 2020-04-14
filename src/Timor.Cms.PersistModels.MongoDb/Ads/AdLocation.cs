@@ -1,11 +1,11 @@
-﻿using Timor.Cms.Domains.Entities;
+﻿using Timor.Cms.PersistModels.MongoDb.Entities;
 
-namespace Timor.Cms.Domains.Ads
+namespace Timor.Cms.PersistModels.MongoDb.Ads
 {
     /// <summary>
     /// 广告显示的位置
     /// </summary>
-    public class AdLocation : DomainEntityBase
+    public class AdLocation : MongoEntityBase
     {
         /// <summary>
         /// 位置的唯一标识

@@ -4,9 +4,9 @@ using Timor.Cms.Dto.Articles.GetArticleById;
 
 namespace Timor.Cms.Service
 {
-    public class CustomerMapper : Profile
+    public class AutoMapProfile : Profile
     {
-        public CustomerMapper()
+        public AutoMapProfile()
         {
             Map();
         }

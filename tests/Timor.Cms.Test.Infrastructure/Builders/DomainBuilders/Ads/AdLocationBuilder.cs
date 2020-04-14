@@ -10,7 +10,7 @@ namespace Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Ads
         {
             var location = new AdLocation
             {
-                Id = ObjectId.GenerateNewId(),
+                Id = ObjectId.GenerateNewId().ToString(),
                 Key = "HomeSlider",
                 DisplayName = "首页轮播图",
                 IsMulpitle = true

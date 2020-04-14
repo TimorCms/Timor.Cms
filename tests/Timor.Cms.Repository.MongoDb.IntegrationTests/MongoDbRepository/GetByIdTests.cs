@@ -2,7 +2,7 @@
 using Autofac;
 using FluentAssertions;
 using MongoDB.Bson;
-using Timor.Cms.Domains.Articles;
+using Timor.Cms.PersistModels.MongoDb.Articles;
 using Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Articles;
 using Xunit;
 
@@ -19,7 +19,7 @@ namespace Timor.Cms.Repository.MongoDb.IntegrationTests.MongoDbRepository
         [Fact]
         public async Task ShouldGetArticleSuccess()
         {
-            var article = ArticleBuilder.Build();
+            var article = Mapper.Map<Article>(ArticleBuilder.Build());
 
             await _articleRepository.InsertAsync(article);
 

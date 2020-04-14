@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Timor.Cms.Domains.Entities;
+using Timor.Cms.PersistModels.MongoDb.Entities;
 
-namespace Timor.Cms.Domains.Navigations
+namespace Timor.Cms.PersistModels.MongoDb.Navigations
 {
-    public class Menu : AuditingDomainEntityBase
+    public class Menu : AuditingMongoEntityBase
     {
         /// <summary>
         /// 菜单名称

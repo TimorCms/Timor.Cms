@@ -8,6 +8,9 @@ namespace Timor.Cms.Infrastructure
         protected override void Load(ContainerBuilder builder)
         {
             DefaultInterfaceRegister.Regist(builder, this.GetType().Assembly);
+            
+            AutoMapperRegister.Regist(builder,this.GetType().Assembly);
+            
             base.Load(builder);
         }
     }

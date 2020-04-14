@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using Timor.Cms.Domains.Ads;
-using Timor.Cms.Domains.Entities;
+using Timor.Cms.PersistModels.MongoDb.Ads;
+using Timor.Cms.PersistModels.MongoDb.Entities;
 
-namespace Timor.Cms.Domains.Articles
+namespace Timor.Cms.PersistModels.MongoDb.Articles
 {
     /// <summary>
     /// 分类
     /// </summary>
-    public class Category : AuditingDomainEntityBase
+    public class Category : AuditingMongoEntityBase
     {
         /// <summary>
         /// 分类名称

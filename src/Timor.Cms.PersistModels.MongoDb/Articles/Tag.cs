@@ -1,11 +1,11 @@
-﻿using Timor.Cms.Domains.Entities;
+﻿using Timor.Cms.PersistModels.MongoDb.Entities;
 
-namespace Timor.Cms.Domains.Articles
+namespace Timor.Cms.PersistModels.MongoDb.Articles
 {
     /// <summary>
     /// 文章标签
     /// </summary>
-    public class Tag : AuditingDomainEntityBase
+    public class Tag : AuditingMongoEntityBase
     {
         /// <summary>
         /// 标签名称

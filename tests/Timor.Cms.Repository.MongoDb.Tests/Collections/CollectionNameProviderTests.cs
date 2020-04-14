@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Timor.Cms.Repository.MongoDb.Attributes;
+using Timor.Cms.Infrastructure.Attributes;
 using Timor.Cms.Repository.MongoDb.Collections;
 using Timor.Cms.Repository.MongoDb.EntityMappings;
 using Xunit;
@@ -8,7 +8,7 @@ namespace Timor.Cms.Repository.MongoDb.Tests.Collections
 {
     public class CollectionNameProviderTests
     {
-        [MogoCollection("attr")]
+        [MongoCollection("attr")]
         public class Test
         {
 

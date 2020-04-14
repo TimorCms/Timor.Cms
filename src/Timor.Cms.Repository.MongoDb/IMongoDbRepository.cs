@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Bson;
-using Timor.Cms.Domains.Entities;
+using Timor.Cms.PersistModels.MongoDb.Entities;
 
 namespace Timor.Cms.Repository.MongoDb
 {
-    public interface IMongoDbRepository<TEntity> where TEntity : Entity<ObjectId>
+    public interface IMongoDbRepository<TEntity> where TEntity : MongoEntityBase
     {
         Task<TEntity> GetByIdAsync(ObjectId id);
         Task InsertAsync(TEntity entity);

@@ -11,7 +11,7 @@ namespace Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Articles
         {
             var seo = new Seo
             {
-                Id = ObjectId.GenerateNewId(),
+                Id = ObjectId.GenerateNewId().ToString(),
                 Uri = "/part1/part2",
                 KeyWords = "Cms 轻量级",
                 Description = "这是一篇绝世好文"

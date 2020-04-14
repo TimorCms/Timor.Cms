@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace Timor.Cms.Repository.MongoDb.Attributes
+namespace Timor.Cms.Infrastructure.Attributes
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class MogoCollectionAttribute : Attribute
+    public class MongoCollectionAttribute : Attribute
     {
         public string CollectionName { get; set; }
 
-        public MogoCollectionAttribute(string collectionName)
+        public MongoCollectionAttribute(string collectionName)
         {
             CollectionName = collectionName;
         }

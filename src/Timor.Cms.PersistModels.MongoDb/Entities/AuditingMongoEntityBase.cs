@@ -1,15 +1,10 @@
 ﻿using System;
 using MongoDB.Bson;
-using Timor.Cms.Domains.Users;
+using Timor.Cms.PersistModels.MongoDb.Users;
 
-namespace Timor.Cms.Domains.Entities
+namespace Timor.Cms.PersistModels.MongoDb.Entities
 {
-    public abstract class AuditingEntity : AuditingEntity<ObjectId>
-    {
-
-    }
-
-    public abstract class AuditingEntity<TPrimaryKey> : Entity<TPrimaryKey>, ISoftDelete
+    public abstract class AuditingMongoEntityBase : MongoEntityBase, ISoftDelete
     {
         /// <summary>
         /// 创建时间
