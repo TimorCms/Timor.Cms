@@ -31,7 +31,7 @@ namespace Timor.Cms.Api.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("token")]
-        public async Task<LoginResult> Login([FromBody]LoginRequest request)
+        public Task<LoginResult> Login([FromBody]LoginRequest request)
         {
             // Todo:判断身份信息
 
@@ -45,13 +45,13 @@ namespace Timor.Cms.Api.Controllers
 
             var jwtToken = GenerateJwtToken(claims, tokenExpirationDate);
 
-            return new LoginResult
+            return Task.FromResult(new LoginResult
             {
                 Token = jwtToken,
                 TokenType = JwtBearerDefaults.AuthenticationScheme,
                 ExpireInSeconds = tokenExpirationDate.TotalSeconds,
                 UserName = request.UserName
-            };
+            });
         }
 
         private string GenerateJwtToken(Claim[] claims, TimeSpan tokenExpirationDate)
