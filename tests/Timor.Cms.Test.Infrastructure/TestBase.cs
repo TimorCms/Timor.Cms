@@ -2,8 +2,6 @@
 using Autofac;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using Timor.Cms.Infrastructure.Configuration;
 using Timor.Cms.Infrastructure.Dependency;
 
 namespace Timor.Cms.Test.Infrastructure
