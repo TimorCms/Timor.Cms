@@ -27,7 +27,7 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       run: |
-        docker build "$GITHUB_WORKSPACE/build" -f  "build/Dockerfile" -t timorcms.azurecr.io/timorcms:${{ github.sha }}
+        docker build "$GITHUB_WORKSPACE" -f  "build/Dockerfile" -t timorcms.azurecr.io/timorcms:${{ github.sha }}
         docker push timorcms.azurecr.io/timorcms:${{ github.sha }}
     
     - uses: azure/k8s-set-context@v1
@@ -59,6 +59,6 @@ jobs:
           manifests/service.yml
           manifests/ingress.yml
         images: |
-          timorcms.azurecr.io/timorcms:${{ github.sha }}
+          timorcms.azurecr.io/timorcms:${{ github.sha }} 
         imagepullsecrets: |
           timorcmsdockerauth
