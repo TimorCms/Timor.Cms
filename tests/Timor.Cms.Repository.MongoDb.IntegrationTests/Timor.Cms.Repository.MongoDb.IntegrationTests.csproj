@@ -22,4 +22,8 @@
     <ProjectReference Include="..\Timor.Cms.Test.Infrastructure\Timor.Cms.Test.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="appsettings.json" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+
 </Project>

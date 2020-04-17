@@ -16,6 +16,7 @@ namespace Timor.Cms.Repository.MongoDb.IntegrationTests.MongoDbRepository
         {
             _articleRepository = IocManager.Resolve<IMongoDbRepository<Article>>();
         }
+
         [Fact]
         public async Task ShouldGetArticleSuccess()
         {

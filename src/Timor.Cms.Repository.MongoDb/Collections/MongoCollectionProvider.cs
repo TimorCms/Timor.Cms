@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
-using MongoDB.Bson;
+﻿using AutoMapper.Configuration;
+using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Timor.Cms.Domains.Entities;
+using Timor.Cms.Infrastructure.Configuration;
 using Timor.Cms.PersistModels.MongoDb.Entities;
 
 
@@ -9,20 +9,21 @@ namespace Timor.Cms.Repository.MongoDb.Collections
 {
     public class MongoCollectionProvider<TEntity> : IMongoCollectionProvider<TEntity> where TEntity : MongoEntityBase
     {
-        private ICollectionNameProvider<TEntity> _collectionNameProvider;
-        //private IConfiguration _configuration;
+        private readonly ICollectionNameProvider<TEntity> _collectionNameProvider;
 
-        public MongoCollectionProvider(ICollectionNameProvider<TEntity> collectionNameProvider)
+        public MongoCollectionProvider(ICollectionNameProvider<TEntity> collectionNameProvider,IOptions<DbOption> dbOption)
         {
             this._collectionNameProvider = collectionNameProvider;
-            //_configuration = configuration;
+            string connection1 = dbOption.Value.MongoConnectionString;
 
-            //var connection = _configuration.GetConnectionString("ConnectionString");
+            //var connection = _configuration.("ConnectionString");
         }
 
         public IMongoCollectionAdapter<TEntity> GetCollection()
         {
-            var client = new MongoClient("mongodb://sa:123qwe@127.0.0.1:27017/admin");
+           //  var client = new MongoClient(connec);
+            
+             var client = new MongoClient("mongodb://sa:123qwe@127.0.0.1:27017/admin");
 
             var dataBase = client.GetDatabase("TimorCms");
 

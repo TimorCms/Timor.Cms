@@ -10,10 +10,10 @@ namespace Timor.Cms.Repository.MongoDb
         public AutoMapProfile()
         {
             CreateMap<ObjectId, string>()
-                .ForMember(dest => dest, option => { option.MapFrom(source => source.ToString()); });
+                .ConstructUsing(source=>source.ToString());
 
             CreateMap<string, ObjectId>()
-                .ForMember(dest => dest, option => { option.MapFrom(source => ObjectId.Parse(source)); });
+                .ConvertUsing(source=>ObjectId.Parse(source));
 
             CreateMap<Domain.Articles.Article, Po.Articles.Article>().ReverseMap();
         }

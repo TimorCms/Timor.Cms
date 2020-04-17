@@ -49,6 +49,11 @@ namespace Timor.Cms.Web
 
             services.Configure<JwtOption>(Configuration.GetSection("JwtOption"));
 
+            services.Configure<DbOption>(x=> new DbOption
+            {
+                MongoConnectionString = Configuration.GetConnectionString("MongoDb")
+            });
+
             var jwtOption = Configuration.GetSection("JwtOption").Get<JwtOption>();
 
             services.AddAuthentication(x =>
@@ -163,8 +168,6 @@ namespace Timor.Cms.Web
 
                 endpoints.MapControllers();
             });
-
-
         }
     }
 }
