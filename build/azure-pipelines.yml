@@ -55,7 +55,7 @@ steps:
   displayName: 'Docker Image Build And Push'
   inputs:
     containerRegistry: 'docker-hub'
-    repository: 'timor-cms'
+    repository: 'baiyunchen/timor-cms'
     command: 'buildAndPush'
     Dockerfile: 'build/Dockerfile'
     buildContext: './'
