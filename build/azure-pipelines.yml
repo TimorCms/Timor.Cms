@@ -51,6 +51,11 @@ steps:
   inputs:
     pollingTimeoutSec: '300'
 
-
-
-
+- task: Docker@2
+  displayName: 'Docker Image Build And Push'
+  inputs:
+    containerRegistry: 'docker-hub'
+    repository: 'timor-cms'
+    command: 'buildAndPush'
+    Dockerfile: 'build/Dockerfile'
+    buildContext: './'
