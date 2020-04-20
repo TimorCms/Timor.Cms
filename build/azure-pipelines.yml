@@ -59,3 +59,5 @@ steps:
     command: 'buildAndPush'
     Dockerfile: 'build/Dockerfile'
     buildContext: './'
+    tags: 'beta-0.0.$(Build.BuildId)'
+        
