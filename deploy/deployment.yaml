@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "timor-cms-web"
+  labels:
+    app: "timor-cms-web"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "timor-cms-web"
+  template:
+    metadata:
+      labels:
+        app: "timor-cms-web"
+    spec:
+      containers:
+        - name: "timor-cms-web"
+          image: "baiyunchen/timor-cms:beta-0.0.33"
+          ports:
+            - containerPort: 80

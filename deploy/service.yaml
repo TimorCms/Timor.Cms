@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-resource-group: MC_k8s_timor-cms_eastasia
+  name: "timor-cms-web"
+spec:
+  loadBalancerIP: 20.189.121.200
+  type: LoadBalancer
+  ports:
+    - port: 80
+  selector:
+    app: "timor-cms-web"
