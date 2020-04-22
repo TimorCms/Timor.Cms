@@ -23,7 +23,7 @@ namespace Timor.Cms.Repository.MongoDb.Collections
 
         public IMongoCollectionAdapter<TEntity> GetCollection()
         {
-            var client = new MongoClient("mongodb+srv://timorcms:0HvML0iLBwzhRhLz@timor-cms-udvsn.azure.mongodb.net/admin?retryWrites=true&w=majority");
+            var client = new MongoClient(_connectionString);
 
             var dataBase = client.GetDatabase(_databaseName);
 
