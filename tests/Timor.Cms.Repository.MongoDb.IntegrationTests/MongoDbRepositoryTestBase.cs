@@ -24,7 +24,8 @@ namespace Timor.Cms.Repository.MongoDb.IntegrationTests
             builder.RegisterInstance(
                 Options.Create(new DbOption
                 {
-                    MongoConnectionString = Configuration.GetConnectionString("MongoDbForTest")
+                    MongoConnectionString = Configuration.GetConnectionString("MongoDb"),
+                    DataBase = Configuration["DbOption:DataBase"]
                 })
             ).As<IOptions<DbOption>>();
             

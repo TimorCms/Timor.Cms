@@ -2,6 +2,7 @@
 using Autofac;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
+using MongoDB.Bson.Serialization;
 using Timor.Cms.Infrastructure.Dependency;
 
 namespace Timor.Cms.Test.Infrastructure
@@ -12,7 +13,7 @@ namespace Timor.Cms.Test.Infrastructure
 
         protected IMapper Mapper { get; }
 
-        protected IConfigurationRoot Configuration { get; set; }
+        protected IConfigurationRoot Configuration { get; }
 
         public TestBase(params Type[] dependAssemblies)
         {
@@ -29,8 +30,6 @@ namespace Timor.Cms.Test.Infrastructure
             
             builder.RegisterInstance(Configuration).As<IConfiguration>().SingleInstance();
             
-            Regist(builder);
-            
             RegistModule(builder, dependAssemblies);
             
             IocManager = builder.Build();
@@ -38,11 +37,13 @@ namespace Timor.Cms.Test.Infrastructure
 
         protected virtual void Regist(ContainerBuilder builder)
         {
-            
+            // empty method for children
         }
 
         protected void RegistModule(ContainerBuilder builder, params Type[] dependAssemblies)
         {
+            Regist(builder);
+            
             ModuleRegister.Regist(builder, dependAssemblies);
         }
     }

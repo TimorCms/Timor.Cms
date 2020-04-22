@@ -52,7 +52,8 @@ namespace Timor.Cms.Web
 
             services.Configure<DbOption>(x=> new DbOption
             {
-                MongoConnectionString = Configuration.GetConnectionString("MongoDb")
+                MongoConnectionString = Configuration.GetConnectionString("MongoDb"),
+                DataBase = Configuration.GetValue<string>("DbOption:DataBase")
             });
 
             var jwtOption = Configuration.GetSection("JwtOption").Get<JwtOption>();

@@ -1,5 +1,4 @@
-﻿using AutoMapper.Configuration;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Timor.Cms.Infrastructure.Configuration;
 using Timor.Cms.PersistModels.MongoDb.Entities;
@@ -10,22 +9,23 @@ namespace Timor.Cms.Repository.MongoDb.Collections
     public class MongoCollectionProvider<TEntity> : IMongoCollectionProvider<TEntity> where TEntity : MongoEntityBase
     {
         private readonly ICollectionNameProvider<TEntity> _collectionNameProvider;
+        private readonly string _connectionString;
+        private readonly string _databaseName;
 
         public MongoCollectionProvider(ICollectionNameProvider<TEntity> collectionNameProvider,IOptions<DbOption> dbOption)
         {
-            this._collectionNameProvider = collectionNameProvider;
-            string connection1 = dbOption.Value.MongoConnectionString;
+            _collectionNameProvider = collectionNameProvider;
+            
+            _databaseName = dbOption.Value.DataBase;
 
-            //var connection = _configuration.("ConnectionString");
+            _connectionString = dbOption.Value.MongoConnectionString;
         }
 
         public IMongoCollectionAdapter<TEntity> GetCollection()
         {
-           //  var client = new MongoClient(connec);
-            
-             var client = new MongoClient("mongodb://sa:123qwe@127.0.0.1:27017/admin");
+            var client = new MongoClient("mongodb+srv://timorcms:0HvML0iLBwzhRhLz@timor-cms-udvsn.azure.mongodb.net/admin?retryWrites=true&w=majority");
 
-            var dataBase = client.GetDatabase("TimorCms");
+            var dataBase = client.GetDatabase(_databaseName);
 
             var collectionName = _collectionNameProvider.GetCollectionName();
 
