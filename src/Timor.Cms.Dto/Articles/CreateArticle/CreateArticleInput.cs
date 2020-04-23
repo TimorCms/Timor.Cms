@@ -1,18 +1,13 @@
 using System;
 using System.Collections.Generic;
-using MongoDB.Bson;
-using Timor.Cms.Domains.Ads;
-using Timor.Cms.Domains.Entities;
 
-namespace Timor.Cms.Domains.Articles
+namespace Timor.Cms.Dto.Articles.CreateArticle
 {
-    public class Article : AuditingDomainEntityBase
+    /// <summary>
+    /// 创建文章请求
+    /// </summary>
+    public class CreateArticleInput
     {
-        public Article()
-        {
-            Attachments = new List<Attachment>();
-        }
-
         /// <summary>
         /// 主标题
         /// </summary>
@@ -36,22 +31,17 @@ namespace Timor.Cms.Domains.Articles
         /// <summary>
         /// 封面图片
         /// </summary>
-        public Attachment CoverImageUrl { get; set; }
+        public string CoverImageUrl { get; set; }
 
         /// <summary>
         /// 作者
         /// </summary>
         public string Author { get; set; }
-        
+
         /// <summary>
         /// 是否发布
         /// </summary>
         public bool IsPublished { get; set; }
-
-        /// <summary>
-        /// 发布时间
-        /// </summary>
-        public DateTime? PublishDate { get; set; }
 
         /// <summary>
         /// 文章引用来源
@@ -66,28 +56,11 @@ namespace Timor.Cms.Domains.Articles
         /// <summary>
         /// 分类ID
         /// </summary>
-        public IList<ObjectId> CategoryIds { get; set; }
-
-        /// <summary>
-        /// 文章分类
-        /// </summary>
-        public IList<Category> Categories { get; set; }
-
-        /// <summary>
-        /// 文章的广告列表，针对文章而显示的一些Banner
-        /// </summary>
-        /// <remarks>
-        /// </remarks>
-        public IList<Ad> Ads { get; set; }
+        public IList<string> CategoryIds { get; set; }
 
         /// <summary>
         /// 附件
         /// </summary>
-        public IList<Attachment> Attachments { get; set; }
-
-        /// <summary>
-        /// SEO信息
-        /// </summary>
-        public Seo Seo { get; set; }
+        public IList<string> AttachmentIds { get; set; }
     }
 }

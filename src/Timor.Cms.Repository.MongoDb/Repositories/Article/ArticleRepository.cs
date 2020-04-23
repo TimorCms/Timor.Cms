@@ -1,10 +1,11 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using MongoDB.Bson;
+using Timor.Cms.Infrastructure.Dependency;
 
 namespace Timor.Cms.Repository.MongoDb.Repositories.Article
 {
-    public class ArticleRepository
+    public class ArticleRepository:ITransient
     {
         private readonly IMongoDbRepository<PersistModels.MongoDb.Articles.Article> _articleRepository;
         private readonly IMapper _mapper;

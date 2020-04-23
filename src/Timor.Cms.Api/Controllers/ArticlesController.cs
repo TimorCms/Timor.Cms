@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Timor.Cms.Dto.Articles.CreateArticle;
 using Timor.Cms.Dto.Articles.GetArticleById;
 using Timor.Cms.Service.Articles;
 
@@ -26,6 +27,16 @@ namespace Timor.Cms.Api.Controllers
            var result = await _articleService.GetArticleById(id);
 
             return result;
+        }
+
+        /// <summary>
+        /// 创建文章
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task CreateArticle([FromBody]CreateArticleInput input)
+        {
+            await _articleService.CreateArticle(input);
         }
     }
 }
