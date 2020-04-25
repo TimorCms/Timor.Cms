@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Timor.Cms.Dto.Articles.GetArticleById;
-
-namespace Timor.Cms.Dto.Categories
+﻿namespace Timor.Cms.Dto.Categories
 {
     /// <summary>
     /// 新增文章分类Request
     /// </summary>
-    public class InsertCategoryInput
+    public class CreateCategoryInput
     {
         /// <summary>
         /// 分类名称
@@ -26,5 +19,10 @@ namespace Timor.Cms.Dto.Categories
         /// 优先级
         /// </summary>
         public int Priority { get; set; }
+
+        /// <summary>
+        /// 父分类ID
+        /// </summary>
+        public string ParentCategoryId { get; set; }
     }
 }

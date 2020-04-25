@@ -10,7 +10,7 @@ namespace Timor.Cms.Dto
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<InsertCategoryInputValidator>().As<IValidator<InsertCategoryInput>>();
+            builder.RegisterType<CreateCategoryInputValidator>().As<IValidator<CreateCategoryInput>>();
 
             base.Load(builder);
         }

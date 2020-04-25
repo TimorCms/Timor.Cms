@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Timor.Cms.Dto.Categories;
+﻿using Timor.Cms.Dto.Categories;
 using Timor.Cms.Infrastructure.Dependency;
+using Timor.Cms.Infrastructure.Extensions;
 
 namespace Timor.Cms.Service.Categories
 {
     public class CategoryService : ITransient
     {
-        public void InsertCategory(InsertCategoryInput input)
+        public void CreateCategory(CreateCategoryInput input)
         {
-            var name = input.Name;
+            if (string.IsNullOrWhiteSpace(input.ParentCategoryId))
+            {
+
+            }
         }
     }
 }

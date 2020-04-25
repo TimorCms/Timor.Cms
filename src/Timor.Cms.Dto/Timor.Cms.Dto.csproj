@@ -17,6 +17,10 @@
     <ProjectReference Include="..\Timor.Cms.Infrastructure\Timor.Cms.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Seos\" />
+  </ItemGroup>
+
   <PropertyGroup>
     <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
