@@ -14,16 +14,13 @@ namespace Timor.Cms.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly TestService _testService;
-        public HomeController(ILogger<HomeController> logger, TestService testService)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _testService = testService;
         }
 
         public IActionResult Index()
         {
-            object str = _testService.HelloWorld();
             return View();
         }
 

@@ -36,24 +36,17 @@ namespace Timor.Cms.Service.Articles
 
         public async Task CreateArticle(CreateArticleInput input)
         {
-            try
-            {
-                var article = _mapper.Map<Article>(input);
-                
-                await CheckCoverImageExist(input);
+            var article = _mapper.Map<Article>(input);
 
-                await CheckAttachmentExist(input);
+            await CheckCoverImageExist(input);
 
-                await CheckCategoryExist(input);
+            await CheckAttachmentExist(input);
 
-                SetPublishDate(article);
+            await CheckCategoryExist(input);
 
-                await _articleRepository.Insert(article);
-            }
-            catch (AutoMapperMappingException e)
-            {
-                throw;
-            }
+            SetPublishDate(article);
+
+            await _articleRepository.Insert(article);
         }
 
         private async Task CheckCategoryExist(CreateArticleInput input)
