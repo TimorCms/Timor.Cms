@@ -1,8 +1,10 @@
-using System.Data;
 using FluentValidation;
 
 namespace Timor.Cms.Dto.Articles.CreateArticle
 {
+    /// <summary>
+    /// 创建文章验证规则
+    /// </summary>
     public class CreateArticleInputValidator: AbstractValidator<CreateArticleInput>
     {
         public CreateArticleInputValidator()
@@ -21,7 +23,7 @@ namespace Timor.Cms.Dto.Articles.CreateArticle
             RuleFor(x => x.Content)
                 .NotNull();
             
-            RuleFor(x => x.CoverImageUrl)
+            RuleFor(x => x.CoverImage)
                 .MaximumLength(128);
 
             RuleFor(x => x.Author)

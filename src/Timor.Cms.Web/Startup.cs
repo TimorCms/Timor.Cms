@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using Autofac;
@@ -50,10 +49,10 @@ namespace Timor.Cms.Web
 
             services.Configure<JwtOption>(Configuration.GetSection("JwtOption"));
 
-            services.Configure<DbOption>(x=> new DbOption
+            services.Configure<DbOption>(x=>
             {
-                MongoConnectionString = Configuration.GetConnectionString("MongoDb"),
-                DataBase = Configuration.GetValue<string>("DbOption:DataBase")
+                x.MongoConnectionString = Configuration.GetConnectionString("MongoDb");
+                x.DataBase = Configuration.GetValue<string>("DbOption:DataBase");
             });
 
             var jwtOption = Configuration.GetSection("JwtOption").Get<JwtOption>();

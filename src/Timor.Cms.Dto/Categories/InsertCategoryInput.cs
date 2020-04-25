@@ -7,6 +7,9 @@ using Timor.Cms.Dto.Articles.GetArticleById;
 
 namespace Timor.Cms.Dto.Categories
 {
+    /// <summary>
+    /// 新增文章分类Request
+    /// </summary>
     public class InsertCategoryInput
     {
         /// <summary>

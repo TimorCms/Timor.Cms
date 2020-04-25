@@ -16,7 +16,11 @@ namespace Timor.Cms.Service
         {
             CreateMap<Article, ArticleOutput>();
 
-            CreateMap<CreateArticleInput, Article>();
+            CreateMap<CreateArticleInput, Article>()
+                .ForMember(d => d.Attachments, o => o.Ignore())
+                .ForMember(d => d.CoverImage, o => o.Ignore())
+                .ForMember(d => d.Categories, o => o.Ignore())
+                .ReverseMap();
         }
     }
 }

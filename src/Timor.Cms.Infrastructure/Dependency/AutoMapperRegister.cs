@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Autofac;
@@ -7,13 +9,21 @@ namespace Timor.Cms.Infrastructure.Dependency
 {
     public class AutoMapperRegister
     {
-        public static void Regist(ContainerBuilder builder, Assembly assembly)
+       
+        public static void Regist(ContainerBuilder builder, Assembly[] assemblies)
         {
-            var mappingConfigs = assembly.GetTypes().Where(t => typeof(Profile).IsAssignableFrom(t));
-
+            List<Type> configTypes = new List<Type>();
+            
+            foreach (var assembly in assemblies)
+            {
+                var mappingConfigs =   assembly.GetTypes().Where(t => typeof(Profile).IsAssignableFrom(t));
+                
+                configTypes.AddRange(mappingConfigs);
+            }
+            
             builder.RegisterInstance(new Mapper(new MapperConfiguration(cfg =>
                 {
-                    foreach (var mappingConfig in mappingConfigs)
+                    foreach (var mappingConfig in configTypes)
                     {
                         cfg.AddProfile(mappingConfig);
                     }

@@ -36,7 +36,7 @@ namespace Timor.Cms.Domains.Articles
         /// <summary>
         /// 封面图片
         /// </summary>
-        public Attachment CoverImageUrl { get; set; }
+        public Attachment CoverImage { get; set; }
 
         /// <summary>
         /// 作者
@@ -62,11 +62,6 @@ namespace Timor.Cms.Domains.Articles
         /// 访问次数
         /// </summary>
         public int VisitCount { get; set; }
-
-        /// <summary>
-        /// 分类ID
-        /// </summary>
-        public IList<ObjectId> CategoryIds { get; set; }
 
         /// <summary>
         /// 文章分类

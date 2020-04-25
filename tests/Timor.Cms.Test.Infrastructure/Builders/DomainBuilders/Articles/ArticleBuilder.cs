@@ -23,7 +23,7 @@ namespace Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Articles
                 PublishDate = DateTime.Now,
                 ReferenceUrl = "http://timorcms.com/timor-cms.html",
                 VisitCount = new Random(100).Next(10, 100000),
-                CoverImageUrl = AttachmentBuilder.Build(),
+                CoverImage = AttachmentBuilder.Build(),
                 Attachments = new List<Attachment>
                 {
                     AttachmentBuilder.Build()

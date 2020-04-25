@@ -31,7 +31,7 @@ namespace Timor.Cms.Dto.Articles.CreateArticle
         /// <summary>
         /// 封面图片
         /// </summary>
-        public string CoverImageUrl { get; set; }
+        public string CoverImage { get; set; }
 
         /// <summary>
         /// 作者

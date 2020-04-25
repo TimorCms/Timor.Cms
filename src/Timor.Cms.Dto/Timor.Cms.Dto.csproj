@@ -17,4 +17,7 @@
     <ProjectReference Include="..\Timor.Cms.Infrastructure\Timor.Cms.Infrastructure.csproj" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
 </Project>

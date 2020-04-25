@@ -13,7 +13,8 @@ namespace Timor.Cms.PersistModels.MongoDb.Articles
     {
         public Article()
         {
-            Attachments = new List<Attachment>();
+            Attachments = new List<ObjectId>();
+            CategoryIds = new List<ObjectId>();
         }
 
         /// <summary>
@@ -39,7 +40,7 @@ namespace Timor.Cms.PersistModels.MongoDb.Articles
         /// <summary>
         /// 封面图片
         /// </summary>
-        public Attachment CoverImageUrl { get; set; }
+        public ObjectId? CoverImage { get; set; }
 
         /// <summary>
         /// 作者
@@ -76,7 +77,7 @@ namespace Timor.Cms.PersistModels.MongoDb.Articles
         /// <summary>
         /// 附件
         /// </summary>
-        public IList<Attachment> Attachments { get; set; }
+        public IList<ObjectId> Attachments { get; set; }
 
         /// <summary>
         /// SEO信息

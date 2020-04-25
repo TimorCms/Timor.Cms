@@ -1,9 +1,10 @@
 ﻿using FluentValidation;
-using Timor.Cms.Dto.Articles.GetArticleById;
-using Timor.Cms.Infrastructure.Dependency;
 
 namespace Timor.Cms.Dto.Categories
 {
+    /// <summary>
+    /// 新增文章分类验证规则
+    /// </summary>
     public class InsertCategoryInputValidator : AbstractValidator<InsertCategoryInput>
     {
         public InsertCategoryInputValidator()
@@ -13,6 +14,5 @@ namespace Timor.Cms.Dto.Categories
                 .NotEmpty()
                 .MaximumLength(16);
         }
-
     }
 }

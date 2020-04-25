@@ -5,12 +5,13 @@ using Timor.Cms.Infrastructure.Dependency;
 
 namespace Timor.Cms.Repository.MongoDb.Repositories.Article
 {
-    public class ArticleRepository:ITransient
+    public class ArticleRepository : ITransient
     {
         private readonly IMongoDbRepository<PersistModels.MongoDb.Articles.Article> _articleRepository;
         private readonly IMapper _mapper;
 
-        public ArticleRepository(IMongoDbRepository<PersistModels.MongoDb.Articles.Article> articleRepository, IMapper mapper)
+        public ArticleRepository(IMongoDbRepository<PersistModels.MongoDb.Articles.Article> articleRepository,
+            IMapper mapper)
         {
             _articleRepository = articleRepository;
             _mapper = mapper;

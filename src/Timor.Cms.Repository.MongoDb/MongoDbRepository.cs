@@ -33,7 +33,7 @@ namespace Timor.Cms.Repository.MongoDb
                 throw new ArgumentNullException(nameof(entity), "插入失败!原因：参数不能为空。");
             }
 
-            if (entity is AuditingDomainEntityBase auditingEntity)
+            if (entity is AuditingMongoEntityBase auditingEntity)
             {
                 auditingEntity.CreateTime = DateTime.Now;
             }
