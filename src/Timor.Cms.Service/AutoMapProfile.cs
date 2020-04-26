@@ -2,6 +2,7 @@
 using Timor.Cms.Domains.Articles;
 using Timor.Cms.Dto.Articles.CreateArticle;
 using Timor.Cms.Dto.Articles.GetArticleById;
+using Timor.Cms.Dto.Categories;
 
 namespace Timor.Cms.Service
 {
@@ -21,6 +22,8 @@ namespace Timor.Cms.Service
                 .ForMember(d => d.CoverImage, o => o.Ignore())
                 .ForMember(d => d.Categories, o => o.Ignore())
                 .ReverseMap();
+
+            CreateMap<CreateCategoryInput, Category>();
         }
     }
 }

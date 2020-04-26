@@ -25,24 +25,14 @@ namespace Timor.Cms.PersistModels.MongoDb.Articles
         public int Priority { get; set; }
 
         /// <summary>
-        /// 分类下的文章
-        /// </summary>
-        public IList<Article> Articles { get; set; }
-
-        /// <summary>
         /// 父分类
         /// </summary>
-        public Category ParentCategory { get; set; }
-
-        /// <summary>
-        /// 子分类
-        /// </summary>
-        public IList<Category> SubCategories { get; set; }
+        public string ParentCategoryId { get; set; }
 
         /// <summary>
         /// 分类的广告列表
         /// </summary>
-        public IList<Ad> Ads { get; set; }
+        public IList<string> Ads { get; set; }
 
         /// <summary>
         /// 分类SEO信息

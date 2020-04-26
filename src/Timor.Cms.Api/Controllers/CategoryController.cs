@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Timor.Cms.Dto.Categories;
 using Timor.Cms.Service.Categories;
@@ -20,14 +21,9 @@ namespace Timor.Cms.Api.Controllers
         /// </summary>
         /// <param name="input"></param>
         [HttpPost]
-        public void InsertCategory([FromBody]CreateCategoryInput input)
+        public async Task InsertCategory([FromBody]CreateCategoryInput input)
         {
-            if (ModelState.IsValid)
-            {
-                throw new ArgumentException("Validate error.");
-            }
-
-            _categoryService.CreateCategory(input);
+            await _categoryService.CreateCategory(input);
         }
     }
 }

@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Timor.Cms.Domains\Timor.Cms.Domains.csproj" />
     <ProjectReference Include="..\Timor.Cms.Repository.MongoDb\Timor.Cms.Repository.MongoDb.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Seos\" />
-  </ItemGroup>
 </Project>
