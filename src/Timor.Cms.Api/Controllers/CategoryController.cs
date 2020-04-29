@@ -25,5 +25,19 @@ namespace Timor.Cms.Api.Controllers
         {
             await _categoryService.CreateCategory(input);
         }
+
+        /// <summary>
+        /// 更新分类
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="input"></param>
+        [HttpPut,Route("{id}")]
+        public async Task<IActionResult> UpdateCategory(string id, [FromBody] CreateCategoryInput input)
+        {
+            await _categoryService.UpdateCategory(id, input);
+            var created = Ok(input);
+            created.StatusCode = 201;
+            return created;
+        }
     }
 }
