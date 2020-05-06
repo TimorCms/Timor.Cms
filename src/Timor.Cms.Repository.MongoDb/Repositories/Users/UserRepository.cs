@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Timor.Cms.Infrastructure.Dependency;
-using Timor.Cms.Infrastructure.Exceptions;
 using Timor.Cms.PersistModels.MongoDb.Users;
 
 namespace Timor.Cms.Repository.MongoDb.Repositories.Users

@@ -6,7 +6,6 @@ using MongoDB.Bson;
 using Timor.Cms.PersistModels.MongoDb.Articles;
 using Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Articles;
 using Xunit;
-using AutoMapper;
 
 namespace Timor.Cms.Repository.MongoDb.IntegrationTests.MongoDbRepository
 {

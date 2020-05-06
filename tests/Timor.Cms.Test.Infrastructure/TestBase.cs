@@ -2,7 +2,6 @@
 using Autofac;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
-using MongoDB.Bson.Serialization;
 using Timor.Cms.Infrastructure.Dependency;
 
 namespace Timor.Cms.Test.Infrastructure

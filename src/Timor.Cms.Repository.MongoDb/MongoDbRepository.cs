@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Timor.Cms.Domains.Entities;
 using Timor.Cms.PersistModels.MongoDb.Entities;
 using Timor.Cms.Repository.MongoDb.Collections;
 

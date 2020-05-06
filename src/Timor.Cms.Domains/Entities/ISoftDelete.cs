@@ -1,7 +1,4 @@
-﻿using System;
-using Timor.Cms.Domains.Users;
-
-namespace Timor.Cms.Domains.Entities
+﻿namespace Timor.Cms.Domains.Entities
 {
     public interface ISoftDelete
     {

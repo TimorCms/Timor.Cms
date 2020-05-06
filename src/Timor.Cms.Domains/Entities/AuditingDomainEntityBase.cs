@@ -1,5 +1,4 @@
 ﻿using System;
-using MongoDB.Bson;
 using Timor.Cms.Domains.Users;
 
 namespace Timor.Cms.Domains.Entities

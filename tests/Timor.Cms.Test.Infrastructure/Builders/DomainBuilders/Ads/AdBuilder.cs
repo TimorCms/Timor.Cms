@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Timor.Cms.Domains.Ads;
 using Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Articles;
 
