@@ -9,7 +9,7 @@ namespace Timor.Cms.Api.Controllers
     [Route("api/v1/articles")]
     public class ArticlesController : Controller
     {
-        private ArticleService _articleService;
+        private readonly ArticleService _articleService;
 
         public ArticlesController(ArticleService articleService)
         {
