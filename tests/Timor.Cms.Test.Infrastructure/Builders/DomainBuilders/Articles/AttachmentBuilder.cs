@@ -4,7 +4,7 @@ using Timor.Cms.Domains.Articles;
 
 namespace Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Articles
 {
-    public class AttachmentBuilder
+    public static class AttachmentBuilder
     {
         public static Attachment Build(Action<Attachment> modifier = null)
         {

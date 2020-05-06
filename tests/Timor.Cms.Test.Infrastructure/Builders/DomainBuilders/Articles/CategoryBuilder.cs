@@ -7,7 +7,7 @@ using Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Entities;
 
 namespace Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Articles
 {
-    public class CategoryBuilder
+    public static class CategoryBuilder
     {
         public static Category Build(Action<Category> modifier = null)
         {

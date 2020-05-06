@@ -4,7 +4,7 @@ using Timor.Cms.Domains.Ads;
 
 namespace Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Ads
 {
-    public class AdLocationBuilder
+    public static class AdLocationBuilder
     {
         public static AdLocation Build(Action<AdLocation> modifier = null)
         {

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Timor.Cms.Test.Infrastructure
 {
-    public class ConfigurationHelper
+    public static class ConfigurationHelper
     {
         public static IConfigurationRoot InitConfiguration()
         {

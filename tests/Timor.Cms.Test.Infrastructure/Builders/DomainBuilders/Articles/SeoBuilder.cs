@@ -5,7 +5,7 @@ using Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Entities;
 
 namespace Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Articles
 {
-    public class SeoBuilder
+    public static class SeoBuilder
     {
         public static Seo Build(Action<Seo> modifier = null)
         {
