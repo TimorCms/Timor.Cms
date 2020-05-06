@@ -55,7 +55,7 @@ namespace Timor.Cms.Service.Articles
             {
                 foreach (var categoryId in input.CategoryIds)
                 {
-                    if (await _categoryRepository.Exist(categoryId))
+                    if (!await _categoryRepository.Exist(categoryId))
                     {
                         throw new BusinessException("分类信息不存在！", nameof(input.CategoryIds), categoryId);
                     }
