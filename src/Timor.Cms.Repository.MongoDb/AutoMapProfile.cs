@@ -16,12 +16,11 @@ namespace Timor.Cms.Repository.MongoDb
             CreateMap<string, ObjectId>()
                 .ConvertUsing((source, id) =>
                 {
-                    if ( ObjectId.TryParse(source,out id))
+                    if (ObjectId.TryParse(source,out id))
                     {
-                        return ObjectId.Empty;
+                        return id;
                     }
-
-                    return id;
+                    return ObjectId.Empty;
                 });
 
             CreateMap<Domain.Articles.Article, Po.Articles.Article>().ReverseMap();
