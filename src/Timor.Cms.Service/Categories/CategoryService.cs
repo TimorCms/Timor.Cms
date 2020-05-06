@@ -37,5 +37,23 @@ namespace Timor.Cms.Service.Categories
 
             await _categoryRepository.Insert(domain);
         }
+
+        public async Task UpdateCategory(string id, UpdateCategoryInput input)
+        {
+            var category = await _categoryRepository.GetById(id);
+
+            if (category == null) throw new BusinessException("分类不存在！");
+
+            _mapper.Map(input, category);
+
+            if (!string.IsNullOrWhiteSpace(input.ParentCategoryId))
+            {
+                var parentCategory = await _categoryRepository.GetById(input.ParentCategoryId);
+
+                category.ParentCategory = parentCategory ?? throw new BusinessException("父分类不存在！");
+            }
+
+            await _categoryRepository.Update(category);
+        }
     }
 }
