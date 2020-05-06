@@ -34,7 +34,7 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Users
             var user = await _userRepository.FindFirstOrDefaultAsync(u =>
                 u.NormalizedUserName == userName);
 
-            return user != null ? _mapper.Map<Domains.Users.User>(user) : null;
+            return _mapper.Map<Domains.Users.User>(user);
         }
 
         public async Task<Domains.Users.User> FindUserByEmail(string email)
@@ -44,7 +44,7 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Users
             var user = await _userRepository.FindFirstOrDefaultAsync(u =>
                 u.NormalizedEmail == email);
 
-            return user != null ? _mapper.Map<Domains.Users.User>(user) : null;
+            return _mapper.Map<Domains.Users.User>(user);
         }
 
         public async Task<Domains.Users.User> FindUserByPhoneNumber(string phoneNumber)
@@ -52,7 +52,7 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Users
             var user = await _userRepository.FindFirstOrDefaultAsync(u =>
                 u.PhoneNumber == phoneNumber);
 
-            return user != null ? _mapper.Map<Domains.Users.User>(user) : null;
+            return _mapper.Map<Domains.Users.User>(user);
         }
     }
 }

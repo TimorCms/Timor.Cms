@@ -20,8 +20,15 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Article
         public async Task Insert(Domains.Articles.Category categoryDomain)
         {
             var category = _mapper.Map<PersistModels.MongoDb.Articles.Category>(categoryDomain);
-
+            
             await _categoryRepository.InsertAsync(category);
+        }
+
+        public async Task Update(Domains.Articles.Category categoryDomain)
+        {
+            var category = _mapper.Map<PersistModels.MongoDb.Articles.Category>(categoryDomain);
+            
+            await _categoryRepository.UpdateAsync(category);
         }
 
         public async Task<bool> Exist(string domainId)

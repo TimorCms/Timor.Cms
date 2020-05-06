@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using Timor.Cms.Domains.Articles;
-using Timor.Cms.Domains.Users;
 using Timor.Cms.Dto.Articles.CreateArticle;
 using Timor.Cms.Dto.Articles.GetArticleById;
 using Timor.Cms.Dto.Categories;
-using Timor.Cms.Dto.Users;
 
 namespace Timor.Cms.Service
 {
@@ -12,9 +10,6 @@ namespace Timor.Cms.Service
     {
         public AutoMapProfile()
         {
-            AllowNullCollections = true;
-            AllowNullDestinationValues = true;
-            
             Map();
         }
 
@@ -29,8 +24,6 @@ namespace Timor.Cms.Service
                 .ReverseMap();
 
             CreateMap<CreateCategoryInput, Category>();
-
-            CreateMap<CreateUserInput, User>();
         }
     }
 }
