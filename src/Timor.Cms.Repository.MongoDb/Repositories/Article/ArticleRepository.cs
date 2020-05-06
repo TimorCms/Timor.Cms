@@ -17,11 +17,13 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Article
             _mapper = mapper;
         }
 
-        public async Task Insert(Domains.Articles.Article articleDomain)
+        public async Task<string> Insert(Domains.Articles.Article articleDomain)
         {
             var article = _mapper.Map<PersistModels.MongoDb.Articles.Article>(articleDomain);
 
-            await _articleRepository.InsertAsync(article);
+             await _articleRepository.InsertAsync(article);
+
+             return article.Id.ToString();
         }
 
         public async Task<Domains.Articles.Article> GetById(string domainId)
