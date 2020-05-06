@@ -8,6 +8,11 @@ namespace Timor.Cms.PersistModels.MongoDb.Users
         /// 用户名
         /// </summary>
         public string UserName { get; set; }
+        
+        /// <summary>
+        /// 规范化后的UserName
+        /// </summary>
+        public string NormalizedUserName { get; set; }
 
         /// <summary>
         /// 密码
@@ -28,6 +33,10 @@ namespace Timor.Cms.PersistModels.MongoDb.Users
         /// 邮箱
         /// </summary>
         public string Email { get; set; }
-
+        
+        /// <summary>
+        /// 规范化后的邮件地址
+        /// </summary>
+        public string NormalizedEmail { get; set; }
     }
 }

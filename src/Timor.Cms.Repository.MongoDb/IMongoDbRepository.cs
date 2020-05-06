@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using Timor.Cms.PersistModels.MongoDb.Entities;
@@ -13,5 +15,7 @@ namespace Timor.Cms.Repository.MongoDb
         Task DeleteAsync(ObjectId id);
         Task DeleteAsync(TEntity entity);
         Task DeleteMultipleAsync(IEnumerable<ObjectId> ids);
+        Task<List<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> condition);
+        Task<TEntity> FindFirstOrDefaultAsync(Expression<Func<TEntity, bool>> condition);
     }
 }

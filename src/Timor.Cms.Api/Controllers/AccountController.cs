@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Timor.Cms.Api.ViewModels.Account;
+using Timor.Cms.Dto.Accounts;
 using Timor.Cms.Infrastructure.Configuration;
+using Timor.Cms.Service.Users;
 
 namespace Timor.Cms.Api.Controllers
 {
@@ -18,10 +20,12 @@ namespace Timor.Cms.Api.Controllers
     {
         private readonly JwtOption _jwtOption;
         private readonly SigningCredentials _signingCredentials;
+        private readonly UserService _userService;
 
-        public AccountController(IOptionsMonitor<JwtOption> option, SigningCredentials signingCredentials)
+        public AccountController(IOptionsMonitor<JwtOption> option, SigningCredentials signingCredentials, UserService userService)
         {
             _signingCredentials = signingCredentials;
+            _userService = userService;
             _jwtOption = option.CurrentValue;
         }
 
@@ -31,26 +35,25 @@ namespace Timor.Cms.Api.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("token")]
-        public async Task<LoginResult> Login([FromBody]LoginRequest request)
+        public async Task<LoginResult> Login([FromBody]LoginInput request)
         {
-            // Todo:判断身份信息
+            var loginResult = await _userService.Login(request);
 
-            var claims = new[]
+            if (loginResult.IsSuccess)
             {
-                new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.Name, request.UserName)
-            };
-
+                loginResult.Claims.Add(new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()));
+            }
+            
             TimeSpan tokenExpirationDate = TimeSpan.FromDays(1);
 
-            var jwtToken = GenerateJwtToken(claims, tokenExpirationDate);
+            var jwtToken = GenerateJwtToken(loginResult.Claims.ToArray(), tokenExpirationDate);
 
             return new LoginResult
             {
                 Token = jwtToken,
                 TokenType = JwtBearerDefaults.AuthenticationScheme,
                 ExpireInSeconds = tokenExpirationDate.TotalSeconds,
-                UserName = request.UserName
+                UserName = loginResult.UserName
             };
         }
 
@@ -69,13 +72,6 @@ namespace Timor.Cms.Api.Controllers
 
             var jwtToken = new JwtSecurityTokenHandler().WriteToken(securityToken);
             return jwtToken;
-        }
-
-        [Authorize]
-        [HttpGet("protected")]
-        public string ProtectedApi()
-        {
-            return "jwt token validate success!";
         }
     }
 }
