@@ -11,11 +11,14 @@ namespace Timor.Cms.Service.Categories
     public class CategoryService : ITransient
     {
         private readonly CategoryRepository _categoryRepository;
+        private readonly ArticleRepository _articleRepository;
         private readonly IMapper _mapper;
 
-        public CategoryService(CategoryRepository categoryRepository, IMapper mapper)
+        public CategoryService(CategoryRepository categoryRepository, IMapper mapper, 
+            ArticleRepository articleRepository)
         {
             _categoryRepository = categoryRepository;
+            _articleRepository = articleRepository;
             _mapper = mapper;
         }
 
@@ -54,6 +57,20 @@ namespace Timor.Cms.Service.Categories
             }
 
             await _categoryRepository.Update(category);
+        }
+
+        public async Task DeleteCategory(string id)
+        {
+            if (!await _categoryRepository.Exist(id)) 
+                throw new BusinessException("分类不存在！");
+
+            if (await _categoryRepository.HasChild(id))
+                throw new BusinessException("含有子分类，无法删除！");
+
+            if (await _articleRepository.ExistsByCategoryId(id))
+                throw new BusinessException("该分类下已存在文章，无法删除！");
+
+            await _categoryRepository.DeleteById(id);
         }
     }
 }

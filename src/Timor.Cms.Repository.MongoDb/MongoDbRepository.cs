@@ -85,5 +85,8 @@ namespace Timor.Cms.Repository.MongoDb
         }
         
         
+
+        public Task<bool> ExistsAsync(Expression<Func<TEntity,bool>> filter)
+            => _collection.Find(filter).AnyAsync();
     }
 }
