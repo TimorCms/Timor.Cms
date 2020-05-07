@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -37,6 +38,9 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Article
 
             return articleDomain;
         }
+
+        public Task Delete(string domainId)
+            => _articleRepository.DeleteAsync(_mapper.Map<ObjectId>(domainId));
 
         public Task<bool> ExistsByCategoryId(string categoryId)
         {
