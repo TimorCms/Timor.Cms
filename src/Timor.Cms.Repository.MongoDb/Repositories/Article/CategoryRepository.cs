@@ -31,6 +31,16 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Article
             await _categoryRepository.UpdateAsync(category);
         }
 
+        public Task DeleteById(string domainId)
+        {
+            var id = _mapper.Map<ObjectId>(domainId);
+
+            return _categoryRepository.DeleteAsync(id);
+        }
+
+        public Task<bool> HasChild(string parentId)
+            => _categoryRepository.ExistsAsync(x => x.ParentCategoryId == parentId);
+
         public async Task<bool> Exist(string domainId)
         {
             var result = await GetById(domainId);

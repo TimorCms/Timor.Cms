@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Timor.Cms.Domains.Articles;
@@ -46,7 +47,15 @@ namespace Timor.Cms.Service.Articles
 
             SetPublishDate(article);
 
+            await SetCategory(input, article);
+
             await _articleRepository.Insert(article);
+        }
+
+        private async Task SetCategory(CreateArticleInput input, Article article)
+        {
+            article.Categories = 
+                (await Task.WhenAll(input.CategoryIds.Select(x => _categoryRepository.GetById(x)))).ToList();
         }
 
         private async Task CheckCategoryExist(CreateArticleInput input)
