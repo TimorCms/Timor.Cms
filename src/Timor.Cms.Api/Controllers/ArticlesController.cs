@@ -9,7 +9,7 @@ namespace Timor.Cms.Api.Controllers
     [Route("api/v1/articles")]
     public class ArticlesController : Controller
     {
-        private ArticleService _articleService;
+        private readonly ArticleService _articleService;
 
         public ArticlesController(ArticleService articleService)
         {
@@ -34,9 +34,11 @@ namespace Timor.Cms.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task CreateArticle([FromBody]CreateArticleInput input)
+        public async Task<IActionResult> CreateArticle([FromBody]CreateArticleInput input)
         {
-            await _articleService.CreateArticle(input);
+           var id=  await _articleService.CreateArticle(input);
+
+            return Created($"/api/v1/articles/{id}",null);
         }
     }
 }

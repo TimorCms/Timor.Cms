@@ -35,7 +35,7 @@ namespace Timor.Cms.Service.Articles
             return _mapper.Map<ArticleOutput>(article);
         }
 
-        public async Task CreateArticle(CreateArticleInput input)
+        public async Task<string> CreateArticle(CreateArticleInput input)
         {
             var article = _mapper.Map<Article>(input);
 
@@ -49,7 +49,9 @@ namespace Timor.Cms.Service.Articles
 
             await SetCategory(input, article);
 
-            await _articleRepository.Insert(article);
+            var id= await _articleRepository.Insert(article);
+
+           return id;            
         }
 
         private async Task SetCategory(CreateArticleInput input, Article article)

@@ -1,5 +1,3 @@
-using System;
-
 namespace Timor.Cms.Web.Models
 {
     public class ErrorViewModel

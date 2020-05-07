@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Timor.Cms.PersistModels.MongoDb.Ads;
 using Timor.Cms.PersistModels.MongoDb.Entities;
 
 namespace Timor.Cms.PersistModels.MongoDb.Articles

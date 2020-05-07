@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using AutoMapper;
 using MongoDB.Bson;
 using Timor.Cms.Infrastructure.Attributes;
 using Timor.Cms.PersistModels.MongoDb.Ads;

@@ -1,5 +1,4 @@
 ﻿using System;
-using MongoDB.Bson;
 using Timor.Cms.PersistModels.MongoDb.Users;
 
 namespace Timor.Cms.PersistModels.MongoDb.Entities

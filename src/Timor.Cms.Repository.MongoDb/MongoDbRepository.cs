@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Timor.Cms.Domains.Entities;
 using Timor.Cms.PersistModels.MongoDb.Entities;
 using Timor.Cms.Repository.MongoDb.Collections;
 
@@ -82,6 +81,18 @@ namespace Timor.Cms.Repository.MongoDb
         {
             await _collection.DeleteManyAsync(Builders<TEntity>.Filter.Where(x => ids.Contains(x.Id)));
         }
+
+        public virtual async Task<List<TEntity>> FindAllAsync(Expression<Func<TEntity,bool>> condition)
+        {
+            return await _collection.Find(condition).ToListAsync();
+        }
+        
+        public virtual async Task<TEntity> FindFirstOrDefaultAsync(Expression<Func<TEntity,bool>> condition)
+        {
+            return await _collection.Find(condition).FirstOrDefaultAsync();
+        }
+        
+        
 
         public Task<bool> ExistsAsync(Expression<Func<TEntity,bool>> filter)
             => _collection.Find(filter).AnyAsync();

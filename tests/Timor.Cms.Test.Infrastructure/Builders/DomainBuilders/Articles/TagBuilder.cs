@@ -4,7 +4,7 @@ using Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Entities;
 
 namespace Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Articles
 {
-    public class TagBuilder
+    public static class TagBuilder
     {
         public static Tag Build(Action<Tag> modifier = null)
         {

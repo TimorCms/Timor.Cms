@@ -5,7 +5,6 @@ using Timor.Cms.Domains;
 using Timor.Cms.Infrastructure;
 using Timor.Cms.Infrastructure.Configuration;
 using Timor.Cms.Test.Infrastructure;
-using Xunit;
 
 namespace Timor.Cms.Repository.MongoDb.IntegrationTests
 {

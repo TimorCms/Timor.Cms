@@ -7,7 +7,7 @@ using AutoMapper;
 
 namespace Timor.Cms.Infrastructure.Dependency
 {
-    public class AutoMapperRegister
+    public static class AutoMapperRegister
     {
        
         public static void Regist(ContainerBuilder builder, Assembly[] assemblies)

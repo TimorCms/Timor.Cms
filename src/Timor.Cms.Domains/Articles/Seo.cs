@@ -1,5 +1,4 @@
-﻿using System;
-using Timor.Cms.Domains.Entities;
+﻿using Timor.Cms.Domains.Entities;
 
 namespace Timor.Cms.Domains.Articles
 {

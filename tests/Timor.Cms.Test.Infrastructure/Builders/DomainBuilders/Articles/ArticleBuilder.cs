@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using MongoDB.Bson;
 using Timor.Cms.Domains.Articles;
 using Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Entities;
 
 namespace Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Articles
 {
-    public class ArticleBuilder
+    public static class ArticleBuilder
     {
         public static Article Build(Action<Article> modifier = null)
         {

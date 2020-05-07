@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Timor.Cms.Infrastructure.Configuration
+﻿namespace Timor.Cms.Infrastructure.Configuration
 {
     public class JwtOption
     {

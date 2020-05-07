@@ -4,7 +4,7 @@ using Timor.Cms.Domains.Entities;
 
 namespace Timor.Cms.Test.Infrastructure.Builders.DomainBuilders.Entities
 {
-    public class AuditingEntityBuilder
+    public static class AuditingEntityBuilder
     {
         public static void PopulateAuditingInfo(AuditingDomainEntityBase domainEntityBase, Action<AuditingDomainEntityBase> modifier = null)
         {

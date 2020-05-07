@@ -5,7 +5,7 @@ namespace Timor.Cms.Dto.Articles.CreateArticle
     /// <summary>
     /// 创建文章验证规则
     /// </summary>
-    public class CreateArticleInputValidator: AbstractValidator<CreateArticleInput>
+    public class CreateArticleInputValidator : AbstractValidator<CreateArticleInput>
     {
         public CreateArticleInputValidator()
         {
@@ -13,16 +13,16 @@ namespace Timor.Cms.Dto.Articles.CreateArticle
                 .NotNull()
                 .NotEmpty()
                 .MaximumLength(128);
-            
+
             RuleFor(x => x.SubTitle)
                 .MaximumLength(128);
-            
+
             RuleFor(x => x.ShortDescription)
                 .MaximumLength(1024);
-            
+
             RuleFor(x => x.Content)
                 .NotNull();
-            
+
             RuleFor(x => x.CoverImage)
                 .MaximumLength(128);
 
