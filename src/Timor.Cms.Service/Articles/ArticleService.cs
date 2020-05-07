@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -43,7 +44,7 @@ namespace Timor.Cms.Service.Articles
 
             await CheckAttachmentExist(input);
 
-            await CheckCategoryExist(input);
+            article.Categories = await GetCategorys(input);
 
             SetPublishDate(article);
 
@@ -60,17 +61,18 @@ namespace Timor.Cms.Service.Articles
                 (await Task.WhenAll(input.CategoryIds.Select(x => _categoryRepository.GetById(x)))).ToList();
         }
 
-        private async Task CheckCategoryExist(CreateArticleInput input)
+        private async Task<IList<Category>> GetCategorys(CreateArticleInput input)
         {
             if (input.CategoryIds.IsNotNullOrEmpty())
             {
-                foreach (var categoryId in input.CategoryIds)
-                {
-                    if (!await _categoryRepository.Exist(categoryId))
-                    {
-                        throw new BusinessException("分类信息不存在！", nameof(input.CategoryIds), categoryId);
-                    }
-                }
+                return await Task.WhenAll(
+                    input.CategoryIds.Select(
+                        async x => 
+                        (await _categoryRepository.GetById(x)) ?? throw new BusinessException("分类信息不存在！")));
+            }
+            else
+            {
+                return null;
             }
         }
 
