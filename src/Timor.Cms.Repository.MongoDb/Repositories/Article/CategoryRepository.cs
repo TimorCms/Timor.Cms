@@ -62,16 +62,11 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Article
             return categoryDomain;
         }
 
-        public async Task<IList<Domains.Articles.Category>> GetManyById(IEnumerable<string> domainIds)
+        public async Task<IList<Domains.Articles.Category>> GetById(IEnumerable<string> domainIds)
         {
-            var list = new List<Domains.Articles.Category> (domainIds.Count());
-            foreach (var domainId in domainIds)
-            {
-                var categry = await GetById(domainId);
-                if (categry != null) 
-                    list.Add(categry);
-            }
-            return list;
+            var ids = domainIds.Select(x => _mapper.Map<ObjectId>(x));
+            var list = await _categoryRepository.FindAllAsync(x => ids.Contains(x.Id));
+            return list.Select(x => _mapper.Map<Domains.Articles.Category>(x)).ToList();
         }
     }
 }

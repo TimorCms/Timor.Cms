@@ -59,7 +59,7 @@ namespace Timor.Cms.Service.Articles
             {
                 var categoryIds = input.CategoryIds.Distinct();
 
-                var categorys = await _categoryRepository.GetManyById(categoryIds);
+                var categorys = await _categoryRepository.GetById(categoryIds);
 
                 if (categoryIds.Count() != categorys.Count)
                     throw new BusinessException("分类信息不存在！");
