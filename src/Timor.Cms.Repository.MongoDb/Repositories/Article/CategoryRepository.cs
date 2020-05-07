@@ -64,7 +64,7 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Article
 
         public async Task<IList<Domains.Articles.Category>> GetById(IEnumerable<string> domainIds)
         {
-            var ids = domainIds.Select(x => _mapper.Map<ObjectId>(x));
+            var ids = _mapper.Map<List<ObjectId>>(domainIds);
             var list = await _categoryRepository.FindAllAsync(x => ids.Contains(x.Id));
             return list.Select(x => _mapper.Map<Domains.Articles.Category>(x)).ToList();
         }
