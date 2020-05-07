@@ -48,17 +48,9 @@ namespace Timor.Cms.Service.Articles
 
             SetPublishDate(article);
 
-            await SetCategory(input, article);
-
             var id= await _articleRepository.Insert(article);
 
            return id;            
-        }
-
-        private async Task SetCategory(CreateArticleInput input, Article article)
-        {
-            article.Categories = 
-                (await Task.WhenAll(input.CategoryIds.Select(x => _categoryRepository.GetById(x)))).ToList();
         }
 
         private async Task<IList<Category>> GetCategorys(CreateArticleInput input)
