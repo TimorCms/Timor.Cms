@@ -1,7 +1,6 @@
 using AutoMapper;
 using MongoDB.Bson;
 using System.Linq;
-using Timor.Cms.Infrastructure.Extensions;
 using Domain = Timor.Cms.Domains;
 using Po = Timor.Cms.PersistModels.MongoDb;
 
@@ -35,6 +34,8 @@ namespace Timor.Cms.Repository.MongoDb
                 .ForMember(x => x.ParentCategoryId,
                     o => o.MapFrom(s => s.ParentCategory == null ? null : s.ParentCategory.Id.ToString()))
                 .ReverseMap();
+
+            CreateMap<Domain.Users.User, Po.Users.User>().ReverseMap();
         }
     }
 }
