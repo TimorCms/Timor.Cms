@@ -57,10 +57,14 @@ namespace Timor.Cms.Service.Articles
         {
             if (input.CategoryIds.IsNotNullOrEmpty())
             {
-                return await Task.WhenAll(
-                    input.CategoryIds.Select(
-                        async x => 
-                        (await _categoryRepository.GetById(x)) ?? throw new BusinessException("分类信息不存在！")));
+                var categoryIds = input.CategoryIds.Distinct();
+
+                var categorys = await _categoryRepository.GetManyById(categoryIds);
+
+                if (categoryIds.Count() != categorys.Count)
+                    throw new BusinessException("分类信息不存在！");
+
+                return categorys;
             }
             else
             {

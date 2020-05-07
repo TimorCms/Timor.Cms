@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using MongoDB.Bson;
@@ -57,6 +60,18 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Article
             var categoryDomain = _mapper.Map<Domains.Articles.Category>(category);
 
             return categoryDomain;
+        }
+
+        public async Task<IList<Domains.Articles.Category>> GetManyById(IEnumerable<string> domainIds)
+        {
+            var list = new List<Domains.Articles.Category> (domainIds.Count());
+            foreach (var domainId in domainIds)
+            {
+                var categry = await GetById(domainId);
+                if (categry != null) 
+                    list.Add(categry);
+            }
+            return list;
         }
     }
 }
