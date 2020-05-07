@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Timor.Cms.Infrastructure;
 using Timor.Cms.PersistModels.MongoDb.Entities;
 using Timor.Cms.Repository.MongoDb.Collections;
 
@@ -28,10 +29,7 @@ namespace Timor.Cms.Repository.MongoDb
 
         public virtual async Task InsertAsync(TEntity entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity), "插入失败!原因：参数不能为空。");
-            }
+            Guard.NotNull(entity, "插入失败!原因：参数不能为空。");
 
             if (entity is AuditingMongoEntityBase auditingEntity)
             {
@@ -43,10 +41,7 @@ namespace Timor.Cms.Repository.MongoDb
 
         public virtual async Task UpdateAsync(TEntity entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity), "更新失败!原因：参数不能为空。");
-            }
+            Guard.NotNull(entity, "更新失败!原因：参数不能为空。");
 
             var result = await _collection.ReplaceOneAsync(x => x.Id == entity.Id, entity);
 
@@ -69,10 +64,7 @@ namespace Timor.Cms.Repository.MongoDb
 
         public virtual async Task DeleteAsync(TEntity entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity), "删除失败，未找到要删除的数据");
-            }
+            Guard.NotNull(entity, "删除失败，未找到要删除的数据");
 
             await DeleteAsync(entity.Id);
         }
