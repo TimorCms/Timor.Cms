@@ -95,7 +95,7 @@ namespace Timor.Cms.Service.Articles
 
         private async Task<bool> AttachmentExist(string attachmentId)
         {
-            return !string.IsNullOrWhiteSpace(attachmentId) && await _attachmentRepository.Exist(attachmentId);
+            return !string.IsNullOrWhiteSpace(attachmentId) && !await _attachmentRepository.Exist(attachmentId);
         }
     }
 }
