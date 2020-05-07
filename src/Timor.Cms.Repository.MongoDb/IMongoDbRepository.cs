@@ -17,5 +17,6 @@ namespace Timor.Cms.Repository.MongoDb
         Task DeleteMultipleAsync(IEnumerable<ObjectId> ids);
         Task<List<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> condition);
         Task<TEntity> FindFirstOrDefaultAsync(Expression<Func<TEntity, bool>> condition);
+        Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> filter);
     }
 }

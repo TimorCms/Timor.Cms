@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Timor.Cms.Domains.Articles;
@@ -42,26 +44,31 @@ namespace Timor.Cms.Service.Articles
 
             await CheckAttachmentExist(input);
 
-            await CheckCategoryExist(input);
+            article.Categories = await GetCategorys(input);
 
             SetPublishDate(article);
 
-           var id= await _articleRepository.Insert(article);
+            var id= await _articleRepository.Insert(article);
 
-           return id;
+           return id;            
         }
 
-        private async Task CheckCategoryExist(CreateArticleInput input)
+        private async Task<IList<Category>> GetCategorys(CreateArticleInput input)
         {
             if (input.CategoryIds.IsNotNullOrEmpty())
             {
-                foreach (var categoryId in input.CategoryIds)
-                {
-                    if (await _categoryRepository.Exist(categoryId))
-                    {
-                        throw new BusinessException("分类信息不存在！", nameof(input.CategoryIds), categoryId);
-                    }
-                }
+                var categoryIds = input.CategoryIds.Distinct();
+
+                var categorys = await _categoryRepository.GetById(categoryIds);
+
+                if (categoryIds.Count() != categorys.Count)
+                    throw new BusinessException("分类信息不存在！");
+
+                return categorys;
+            }
+            else
+            {
+                return null;
             }
         }
 

@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using MongoDB.Bson;
@@ -35,6 +36,14 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Article
             var articleDomain = _mapper.Map<Domains.Articles.Article>(article);
 
             return articleDomain;
+        }
+
+        public Task<bool> ExistsByCategoryId(string categoryId)
+        {
+            var categoryObjectId =_mapper.Map<ObjectId>(categoryId);
+            return _articleRepository.ExistsAsync(
+                x => x.CategoryIds.Any(
+                    x => x == categoryObjectId));
         }
     }
 }
