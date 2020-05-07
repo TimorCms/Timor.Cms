@@ -7,8 +7,6 @@ namespace Timor.Cms.Test.Infrastructure
     {
         public static IConfigurationRoot InitConfiguration()
         {
-            var test = Directory.GetCurrentDirectory();
-
             var configBuilder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true)
