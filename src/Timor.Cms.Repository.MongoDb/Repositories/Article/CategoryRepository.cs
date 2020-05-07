@@ -66,7 +66,7 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Article
         {
             var ids = _mapper.Map<List<ObjectId>>(domainIds);
             var list = await _categoryRepository.FindAllAsync(x => ids.Contains(x.Id));
-            return list.Select(x => _mapper.Map<Domains.Articles.Category>(x)).ToList();
+            return _mapper.Map<List<Domains.Articles.Category>>(list);
         }
     }
 }
