@@ -87,18 +87,22 @@ namespace Timor.Cms.Service.Articles
 
         private async Task CheckCoverImageExist(CreateArticleInput input)
         {
-            if (!string.IsNullOrWhiteSpace(input.CoverImage))
+            if (!await AttachmentExist(input.CoverImage))
             {
-                if (await AttachmentExist(input.CoverImage))
-                {
-                    throw new BusinessException("封面图片对应的附件不存在！", nameof(input.CoverImage), input.CoverImage);
-                }
+                throw new BusinessException("封面图片对应的附件不存在！", nameof(input.CoverImage), input.CoverImage);
             }
         }
 
         private async Task<bool> AttachmentExist(string attachmentId)
         {
-            return await _attachmentRepository.Exist(attachmentId);
+            if (!string.IsNullOrWhiteSpace(attachmentId))
+            {
+                return await _attachmentRepository.Exist(attachmentId);
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

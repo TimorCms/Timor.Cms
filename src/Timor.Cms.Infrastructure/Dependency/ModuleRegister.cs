@@ -4,7 +4,7 @@ using Autofac;
 
 namespace Timor.Cms.Infrastructure.Dependency
 {
-    public class ModuleRegister
+    public static class ModuleRegister
     {
         public static void Regist(ContainerBuilder builder,params Type[] appModuleTypes)
         {

@@ -5,7 +5,7 @@ using Autofac;
 
 namespace Timor.Cms.Infrastructure.Dependency
 {
-    public class DefaultInterfaceRegister
+    public static class DefaultInterfaceRegister
     {
         public static void Regist(ContainerBuilder builder, Assembly assembly)
         {
