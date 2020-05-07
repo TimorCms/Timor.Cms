@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -22,9 +23,16 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Article
         {
             var article = _mapper.Map<PersistModels.MongoDb.Articles.Article>(articleDomain);
 
-             await _articleRepository.InsertAsync(article);
+            await _articleRepository.InsertAsync(article);
 
-             return article.Id.ToString();
+            return article.Id.ToString();
+        }
+
+        public Task Update(Domains.Articles.Article articleDomain)
+        {
+            var article = _mapper.Map<PersistModels.MongoDb.Articles.Article>(articleDomain);
+
+            return _articleRepository.UpdateAsync(article);
         }
 
         public async Task<Domains.Articles.Article> GetById(string domainId)
