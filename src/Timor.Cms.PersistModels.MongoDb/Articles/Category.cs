@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MongoDB.Bson;
 using Timor.Cms.PersistModels.MongoDb.Entities;
 
 namespace Timor.Cms.PersistModels.MongoDb.Articles
@@ -26,7 +27,7 @@ namespace Timor.Cms.PersistModels.MongoDb.Articles
         /// <summary>
         /// 父分类
         /// </summary>
-        public string ParentCategoryId { get; set; }
+        public ObjectId? ParentCategoryId { get; set; }
 
         /// <summary>
         /// 分类的广告列表

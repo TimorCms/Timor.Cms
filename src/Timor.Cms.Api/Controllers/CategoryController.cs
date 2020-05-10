@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Timor.Cms.Dto.Categories;
 using Timor.Cms.Service.Categories;
@@ -13,6 +15,15 @@ namespace Timor.Cms.Api.Controllers
         public CategoryController(CategoryService categoryService)
         {
             _categoryService = categoryService;
+        }
+
+
+        [HttpGet]
+        public async Task<List<GetAllCategoryOutput>> GetAllCategories()
+        {
+            var categories = await _categoryService.GetAllCategories();
+
+            return categories;
         }
 
         /// <summary>
