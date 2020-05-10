@@ -40,5 +40,18 @@ namespace Timor.Cms.Api.Controllers
 
             return Created($"/api/v1/articles/{id}",null);
         }
+
+        /// <summary>
+        /// 删除文章
+        /// </summary>
+        /// <param name="id">文章 ID</param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteArticle(string id)
+        {
+            await _articleService.DeleteArticle(id);
+
+            return NoContent();
+        }
     }
 }
