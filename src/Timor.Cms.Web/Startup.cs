@@ -40,7 +40,11 @@ namespace Timor.Cms.Web
         {
             services.AddOptions();
             services
-                .AddControllersWithViews(options => { options.Filters.Add(typeof(ValidationFilter)); })
+                .AddControllersWithViews(options =>
+                {
+                    options.Filters.Add<ValidationFilter>();
+                    options.Filters.Add<ExceptionFilter>();
+                })
                 .AddApplicationPart(typeof(ApiModule).Assembly)
                 .AddControllersAsServices()
                 .AddFluentValidation();
@@ -86,6 +90,8 @@ namespace Timor.Cms.Web
                 });
 
             services.AddAuthorization();
+
+            services.AddLogging();
 
             services.AddCors();
 

@@ -1,0 +1,27 @@
+﻿namespace Timor.Cms.Dto.Categories
+{
+    public class GetAllCategoryOutput
+    {
+        public string Id { get; set; }
+
+        /// <summary>
+        /// 分类名称
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 分类描述
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// 优先级
+        /// </summary>
+        public int Priority { get; set; }
+
+        /// <summary>
+        /// 父分类
+        /// </summary>
+        public string ParentCategoryId { get; set; }
+    }
+}

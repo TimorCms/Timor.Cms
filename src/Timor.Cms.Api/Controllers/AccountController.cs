@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Timor.Cms.Api.ViewModels.Account;
 using Timor.Cms.Dto.Accounts;
 using Timor.Cms.Infrastructure.Configuration;
+using Timor.Cms.Infrastructure.Exceptions;
 using Timor.Cms.Service.Users;
 
 namespace Timor.Cms.Api.Controllers
@@ -41,7 +42,7 @@ namespace Timor.Cms.Api.Controllers
             {
                 loginResult.Claims.Add(new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()));
             }
-            
+
             TimeSpan tokenExpirationDate = TimeSpan.FromDays(1);
 
             var jwtToken = GenerateJwtToken(loginResult.Claims.ToArray(), tokenExpirationDate);

@@ -65,6 +65,11 @@ namespace Timor.Cms.Service.Users
 
             var verifyResult = verifyPasswordHash.VerifyHashedPassword(user, user.Password, input.Password);
 
+            if (verifyResult == PasswordVerificationResult.Failed)
+            {
+                throw new BusinessException("登录失败，用户不存在或密码错误！");
+            }
+
             var loginResult = new LoginOutput
             {
                 IsSuccess = verifyResult != PasswordVerificationResult.Failed,

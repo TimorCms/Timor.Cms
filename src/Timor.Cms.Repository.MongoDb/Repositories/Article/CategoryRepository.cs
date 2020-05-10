@@ -23,14 +23,14 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Article
         public async Task Insert(Domains.Articles.Category categoryDomain)
         {
             var category = _mapper.Map<PersistModels.MongoDb.Articles.Category>(categoryDomain);
-            
+
             await _categoryRepository.InsertAsync(category);
         }
 
         public async Task Update(Domains.Articles.Category categoryDomain)
         {
             var category = _mapper.Map<PersistModels.MongoDb.Articles.Category>(categoryDomain);
-            
+
             await _categoryRepository.UpdateAsync(category);
         }
 
@@ -42,7 +42,10 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Article
         }
 
         public Task<bool> HasChild(string parentId)
-            => _categoryRepository.ExistsAsync(x => x.ParentCategoryId == parentId);
+        {
+            var parentObjectId = _mapper.Map<ObjectId>(parentId);
+            return _categoryRepository.ExistsAsync(x => x.ParentCategoryId == parentObjectId);
+        }
 
         public async Task<bool> Exist(string domainId)
         {
@@ -67,6 +70,26 @@ namespace Timor.Cms.Repository.MongoDb.Repositories.Article
             var ids = _mapper.Map<List<ObjectId>>(domainIds);
             var list = await _categoryRepository.FindAllAsync(x => ids.Contains(x.Id));
             return _mapper.Map<List<Domains.Articles.Category>>(list);
+        }
+
+        public async Task<IList<Domains.Articles.Category>> GetAllCategories()
+        {
+            var allCategories = await _categoryRepository.FindAllAsync(c=> true);
+
+
+            var allCategoryDomains = new List<Domains.Articles.Category>();
+
+            foreach (var category in allCategories)
+            {
+                var categoryDomain = _mapper.Map<Domains.Articles.Category>(category);
+
+                var parentCategory = allCategories.FirstOrDefault(x => x.Id == category.ParentCategoryId);
+                categoryDomain.ParentCategory = _mapper.Map<Domains.Articles.Category>(parentCategory);
+
+                allCategoryDomains.Add(categoryDomain);
+            }
+
+            return allCategoryDomains;
         }
     }
 }

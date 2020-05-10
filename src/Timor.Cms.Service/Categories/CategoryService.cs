@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using Timor.Cms.Domains.Articles;
 using Timor.Cms.Dto.Categories;
@@ -20,6 +21,15 @@ namespace Timor.Cms.Service.Categories
             _categoryRepository = categoryRepository;
             _articleRepository = articleRepository;
             _mapper = mapper;
+        }
+
+        public async Task<List<GetAllCategoryOutput>> GetAllCategories()
+        {
+            var allCategories = await _categoryRepository.GetAllCategories();
+
+            var dtoList = _mapper.Map<List<GetAllCategoryOutput>>(allCategories);
+
+            return dtoList;
         }
 
         public async Task CreateCategory(CreateCategoryInput input)
