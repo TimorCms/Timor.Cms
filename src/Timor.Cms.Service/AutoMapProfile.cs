@@ -32,6 +32,8 @@ namespace Timor.Cms.Service
 
             CreateMap<CreateCategoryInput, Category>();
 
+            CreateMap<UpdateCategoryInput, Category>();
+
             CreateMap<Category, GetAllCategoryOutput>();
         }
     }
