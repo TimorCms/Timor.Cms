@@ -71,6 +71,14 @@ namespace Timor.Cms.Service.Articles
             await _articleRepository.Update(article);
         }
 
+        public async Task DeleteArticle(string id)
+        {
+            var article = await _articleRepository.GetById(id);
+            if (article == null) throw new BusinessException("文章不存在！");
+
+            await _articleRepository.Delete(id);
+        }
+
         private async Task<IList<Category>> GetCategorys(IList<string> categoryIds)
         {
             if (categoryIds.IsNotNullOrEmpty())
