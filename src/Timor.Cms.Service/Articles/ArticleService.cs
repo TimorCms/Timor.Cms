@@ -6,6 +6,7 @@ using AutoMapper;
 using Timor.Cms.Domains.Articles;
 using Timor.Cms.Dto.Articles.CreateArticle;
 using Timor.Cms.Dto.Articles.GetArticleById;
+using Timor.Cms.Dto.Articles.UpdateArticle;
 using Timor.Cms.Infrastructure.Dependency;
 using Timor.Cms.Infrastructure.Exceptions;
 using Timor.Cms.Infrastructure.Extensions;
@@ -40,17 +41,34 @@ namespace Timor.Cms.Service.Articles
         {
             var article = _mapper.Map<Article>(input);
 
-            await CheckCoverImageExist(input);
+            await CheckCoverImageExist(input.CoverImage);
 
-            await CheckAttachmentExist(input);
+            await CheckAttachmentExist(input.AttachmentIds);
 
-            article.Categories = await GetCategorys(input);
+            article.Categories = await GetCategorys(input.CategoryIds);
 
             SetPublishDate(article);
 
-            var id= await _articleRepository.Insert(article);
+            var id = await _articleRepository.Insert(article);
 
-           return id;            
+            return id;
+        }
+ 
+        public async Task UpdateArticle(string id, UpdateArticleInput input)
+        {
+            var article = await _articleRepository.GetById(id);
+
+            if (article == null) throw new BusinessException("文章不存在！");
+
+            _mapper.Map(input,article);
+
+            await CheckCoverImageExist(input.CoverImage);
+
+            await CheckAttachmentExist(input.AttachmentIds);
+
+            article.Categories = await GetCategorys(input.CategoryIds);
+
+            await _articleRepository.Update(article);
         }
 
         public async Task DeleteArticle(string id)
@@ -61,13 +79,13 @@ namespace Timor.Cms.Service.Articles
             await _articleRepository.Delete(id);
         }
 
-        private async Task<IList<Category>> GetCategorys(CreateArticleInput input)
+        private async Task<IList<Category>> GetCategorys(IList<string> categoryIds)
         {
-            if (input.CategoryIds.IsNotNullOrEmpty())
+            if (categoryIds.IsNotNullOrEmpty())
             {
-                var categoryIds = input.CategoryIds.Distinct();
+                var categoryIdsDistinct = categoryIds.Distinct();
 
-                var categorys = await _categoryRepository.GetById(categoryIds);
+                var categorys = await _categoryRepository.GetById(categoryIdsDistinct);
 
                 if (categoryIds.Count() != categorys.Count)
                     throw new BusinessException("分类信息不存在！");
@@ -86,25 +104,25 @@ namespace Timor.Cms.Service.Articles
                 article.PublishDate = DateTime.Now;
         }
 
-        private async Task CheckAttachmentExist(CreateArticleInput input)
+        private async Task CheckAttachmentExist(IList<string> attachmentIds)
         {
-            if (input.AttachmentIds.IsNotNullOrEmpty())
+            if (attachmentIds.IsNotNullOrEmpty())
             {
-                foreach (var attachmentId in input.AttachmentIds)
+                foreach (var attachmentId in attachmentIds)
                 {
-                    if (await AttachmentExist(attachmentId))
+                    if (!await AttachmentExist(attachmentId))
                     {
-                        throw new BusinessException("附件不存在！", nameof(input.AttachmentIds), attachmentId);
+                        throw new BusinessException("附件不存在！", nameof(attachmentIds), attachmentId);
                     }
                 }
             }
         }
 
-        private async Task CheckCoverImageExist(CreateArticleInput input)
+        private async Task CheckCoverImageExist(string coverImage)
         {
-            if (!await AttachmentExist(input.CoverImage))
+            if (!await AttachmentExist(coverImage))
             {
-                throw new BusinessException("封面图片对应的附件不存在！", nameof(input.CoverImage), input.CoverImage);
+                throw new BusinessException("封面图片对应的附件不存在！", nameof(coverImage), coverImage);
             }
         }
 

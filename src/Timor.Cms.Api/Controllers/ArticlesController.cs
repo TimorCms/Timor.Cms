@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Timor.Cms.Dto.Articles.CreateArticle;
 using Timor.Cms.Dto.Articles.GetArticleById;
+using Timor.Cms.Dto.Articles.UpdateArticle;
 using Timor.Cms.Service.Articles;
 
 namespace Timor.Cms.Api.Controllers
@@ -24,7 +25,7 @@ namespace Timor.Cms.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ArticleOutput> GetArticleById(string id)
         {
-           var result = await _articleService.GetArticleById(id);
+            var result = await _articleService.GetArticleById(id);
 
             return result;
         }
@@ -36,7 +37,7 @@ namespace Timor.Cms.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateArticle([FromBody]CreateArticleInput input)
         {
-           var id=  await _articleService.CreateArticle(input);
+            var id = await _articleService.CreateArticle(input);
 
             return Created($"/api/v1/articles/{id}",null);
         }
@@ -50,6 +51,20 @@ namespace Timor.Cms.Api.Controllers
         public async Task<IActionResult> DeleteArticle(string id)
         {
             await _articleService.DeleteArticle(id);
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// 更新文章
+        /// </summary>
+        /// <param name="id">文章ID</param>
+        /// <param name="input">更新文章请求</param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateArticle(string id, [FromBody] UpdateArticleInput input)
+        {
+            await _articleService.UpdateArticle(id, input);
 
             return NoContent();
         }
