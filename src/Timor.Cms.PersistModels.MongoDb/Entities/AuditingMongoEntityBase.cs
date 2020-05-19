@@ -1,4 +1,5 @@
 ﻿using System;
+using MongoDB.Bson;
 using Timor.Cms.PersistModels.MongoDb.Users;
 
 namespace Timor.Cms.PersistModels.MongoDb.Entities
@@ -13,7 +14,7 @@ namespace Timor.Cms.PersistModels.MongoDb.Entities
         /// <summary>
         /// 创建用户
         /// </summary>
-        public User CreateUser { get; set; }
+        public ObjectId? CreateUserId { get; set; }
 
         /// <summary>
         /// 最后更改时间
@@ -23,7 +24,7 @@ namespace Timor.Cms.PersistModels.MongoDb.Entities
         /// <summary>
         /// 最后更改用户
         /// </summary>
-        public User LastModifyUser { get; set; }
+        public ObjectId? LastModifyUserId { get; set; }
 
         /// <summary>
         /// 删除时间
@@ -33,7 +34,7 @@ namespace Timor.Cms.PersistModels.MongoDb.Entities
         /// <summary>
         /// 删除用户
         /// </summary>
-        public User DeleteUser { get; set; }
+        public ObjectId? DeleteUserId { get; set; }
 
         /// <summary>
         /// 是否删除

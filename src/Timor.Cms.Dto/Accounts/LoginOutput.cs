@@ -7,6 +7,8 @@ namespace Timor.Cms.Dto.Accounts
     {
         public bool IsSuccess { get; set; }
         
+        public string UserId { get; set; }
+        
         public string UserName { get; set; }
         
         public List<Claim> Claims { get; set; }

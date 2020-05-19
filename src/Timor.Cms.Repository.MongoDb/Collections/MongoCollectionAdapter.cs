@@ -52,5 +52,13 @@ namespace Timor.Cms.Repository.MongoDb.Collections
         {
             return _collection.DeleteManyAsync(filter, cancellationToken);
         }
+
+        public Task<UpdateResult> UpdateMany( FilterDefinition<TDocument> filter,
+            UpdateDefinition<TDocument> update,
+            UpdateOptions options = null,
+            CancellationToken cancellationToken = default (CancellationToken))
+        {
+            return _collection.UpdateManyAsync(filter, update,options,cancellationToken);
+        }
     }
 }

@@ -49,6 +49,8 @@ namespace Timor.Cms.Web
                 .AddControllersAsServices()
                 .AddFluentValidation();
 
+            services.AddHttpContextAccessor();
+            
             services.AddHealthChecks();
 
             services.Configure<JwtOption>(Configuration.GetSection("JwtOption"));

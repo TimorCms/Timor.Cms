@@ -1,8 +1,9 @@
 ﻿using Timor.Cms.Domains.Articles;
+using Timor.Cms.Domains.Entities;
 
 namespace Timor.Cms.Domains.Ads
 {
-    public class Ad
+    public class Ad : AuditingDomainEntityBase
     {
         /// <summary>
         /// 广告内容

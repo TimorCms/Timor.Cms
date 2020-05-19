@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using MongoDB.Bson.Serialization.Conventions;
 using Timor.Cms.Infrastructure;
 using Timor.Cms.Repository.MongoDb.Collections;
 using Timor.Cms.Repository.MongoDb.EntityMappings;
@@ -29,8 +30,11 @@ namespace Timor.Cms.Repository.MongoDb
 
             builder.RegisterGeneric(typeof(MongoCollectionProvider<>)).As(typeof(IMongoCollectionProvider<>));
 
-            builder.RegisterGeneric(typeof(MongoDbRepository<>)).As(typeof(IMongoDbRepository<>));
+            builder.RegisterGeneric(typeof(MongoDbRepository<>)).As(typeof(IMongoDbRepository<>)).InstancePerDependency();
 
+            var conventionPack = new ConventionPack { new IgnoreExtraElementsConvention(true) };
+            ConventionRegistry.Register("IgnoreExtraElements", conventionPack, type => true);
+            
             base.Load(builder);
         }
     }

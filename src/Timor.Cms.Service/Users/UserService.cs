@@ -46,15 +46,9 @@ namespace Timor.Cms.Service.Users
         {
             var user = await _userRepository.FindUserByUserName(input.LoginName);
 
-            if (user == null)
-            {
-                user = await _userRepository.FindUserByPhoneNumber(input.LoginName);
-            }
+            user ??= await _userRepository.FindUserByPhoneNumber(input.LoginName);
 
-            if (user == null)
-            {
-                user = await _userRepository.FindUserByEmail(input.LoginName);
-            }
+            user ??= await _userRepository.FindUserByEmail(input.LoginName);
 
             if (user == null)
             {
@@ -74,6 +68,7 @@ namespace Timor.Cms.Service.Users
             {
                 IsSuccess = verifyResult != PasswordVerificationResult.Failed,
                 UserName = user.UserName,
+                UserId = user.Id,
                 Claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.UserName),

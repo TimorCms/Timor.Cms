@@ -30,5 +30,10 @@ namespace Timor.Cms.Repository.MongoDb.Collections
         Task<DeleteResult> DeleteManyAsync(
             FilterDefinition<TDocument> filter,
             CancellationToken cancellationToken = default(CancellationToken));
+
+        Task<UpdateResult> UpdateMany(FilterDefinition<TDocument> filter,
+            UpdateDefinition<TDocument> update,
+            UpdateOptions options = null,
+            CancellationToken cancellationToken = default(CancellationToken));
     }
 }
