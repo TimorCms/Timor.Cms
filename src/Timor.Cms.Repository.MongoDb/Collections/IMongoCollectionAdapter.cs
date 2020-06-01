@@ -12,6 +12,10 @@ namespace Timor.Cms.Repository.MongoDb.Collections
             Expression<Func<TDocument, bool>> filter,
             FindOptions options = null);
 
+        IFindFluent<TDocument, TDocument> Find(
+            FilterDefinition<TDocument> filter,
+            FindOptions options = null);
+
         Task InsertOneAsync(
             TDocument document,
             InsertOneOptions options = null,

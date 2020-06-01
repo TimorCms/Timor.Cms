@@ -1,21 +1,16 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using MongoDB.Bson;
-using Timor.Cms.Infrastructure.Attributes;
-using Timor.Cms.PersistModels.MongoDb.Ads;
-using Timor.Cms.PersistModels.MongoDb.Entities;
+using Timor.Cms.Dto.Categories;
 
-namespace Timor.Cms.PersistModels.MongoDb.Articles
+namespace Timor.Cms.Dto.Articles.SearchArticles
 {
-    [MongoCollection("articles")]
-    public class Article : AuditingMongoEntityBase
+    /// <summary>
+    /// 文章搜索结果
+    /// </summary>
+    public class SearchArticlesDto
     {
-        public Article()
-        {
-            Attachments = new List<ObjectId>();
-            CategoryIds = new List<ObjectId>();
-        }
-
+        public string Id { get; set; }
+        
         /// <summary>
         /// 主标题
         /// </summary>
@@ -39,7 +34,7 @@ namespace Timor.Cms.PersistModels.MongoDb.Articles
         /// <summary>
         /// 封面图片
         /// </summary>
-        public ObjectId? CoverImage { get; set; }
+        public string CoverImagePath { get; set; }
 
         /// <summary>
         /// 作者
@@ -65,27 +60,10 @@ namespace Timor.Cms.PersistModels.MongoDb.Articles
         /// 访问次数
         /// </summary>
         public int VisitCount { get; set; }
-
+        
         /// <summary>
-        /// 分类ID
+        /// 文章分类
         /// </summary>
-        public IList<ObjectId> CategoryIds { get; set; }
-
-        /// <summary>
-        /// 文章的广告列表，针对文章而显示的一些Banner
-        /// </summary>
-        /// <remarks>
-        /// </remarks>
-        public IList<Ad> Ads { get; set; }
-
-        /// <summary>
-        /// 附件
-        /// </summary>
-        public IList<ObjectId> Attachments { get; set; }
-
-        /// <summary>
-        /// SEO信息
-        /// </summary>
-        public Seo Seo { get; set; }
+        public IList<CategoryDto> Categories { get; set; }
     }
 }

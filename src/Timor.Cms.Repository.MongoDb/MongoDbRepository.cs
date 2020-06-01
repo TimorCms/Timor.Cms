@@ -20,7 +20,7 @@ namespace Timor.Cms.Repository.MongoDb
 
         public MongoDbRepository(IMongoCollectionProvider<TEntity> collectionProvider, ISession session, IMapper mapper)
         {
-            _userId = mapper.Map<ObjectId?>( session.UserId);
+            _userId = mapper.Map<ObjectId?>(session.UserId);
             _collection = collectionProvider.GetCollection();
         }
 
@@ -122,6 +122,21 @@ namespace Timor.Cms.Repository.MongoDb
             return await _collection.Find(condition.ApplySoftDeleteFilter()).ToListAsync();
         }
 
+        public IFindFluent<TEntity, TEntity> Find(Expression<Func<TEntity, bool>> condition)
+        {
+            return _collection.Find(condition.ApplySoftDeleteFilter());
+        }
+
+        public IFindFluent<TEntity, TEntity> Find(FilterDefinition<TEntity> filter)
+        {
+            if (typeof(TEntity).IsAuditEntity())
+            {
+                filter = filter & Builders<TEntity>.Filter.Eq(nameof(AuditingMongoEntityBase.IsDelete), false);
+            }
+
+            return _collection.Find(filter);
+        }
+
         public virtual async Task<TEntity> FindFirstOrDefaultAsync(Expression<Func<TEntity, bool>> condition)
         {
             return await _collection.Find(condition.ApplySoftDeleteFilter()).FirstOrDefaultAsync();
@@ -130,12 +145,12 @@ namespace Timor.Cms.Repository.MongoDb
 
         public Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> filter)
             => _collection.Find(filter.ApplySoftDeleteFilter()).AnyAsync();
-
     }
-    
+
     public static class ExpressionExtension
     {
-        public static Expression<Func<TEntity, bool>> ApplySoftDeleteFilter<TEntity>(this Expression<Func<TEntity, bool>> originalCondition)
+        public static Expression<Func<TEntity, bool>> ApplySoftDeleteFilter<TEntity>(
+            this Expression<Func<TEntity, bool>> originalCondition)
         {
             if (typeof(TEntity).IsAuditEntity())
             {

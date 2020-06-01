@@ -7,6 +7,8 @@ using Timor.Cms.Domains.Articles;
 using Timor.Cms.Dto.Articles.CreateArticle;
 using Timor.Cms.Dto.Articles.GetArticleById;
 using Timor.Cms.Dto.Articles.UpdateArticle;
+using Timor.Cms.Dto.Articles.SearchArticles;
+using Timor.Cms.Dto.BaseDto;
 using Timor.Cms.Infrastructure.Dependency;
 using Timor.Cms.Infrastructure.Exceptions;
 using Timor.Cms.Infrastructure.Extensions;
@@ -45,6 +47,7 @@ namespace Timor.Cms.Service.Articles
 
             await CheckAttachmentExist(input.AttachmentIds);
 
+
             article.Categories = await GetCategorys(input.CategoryIds);
 
             SetPublishDate(article);
@@ -79,23 +82,29 @@ namespace Timor.Cms.Service.Articles
             await _articleRepository.Delete(id);
         }
 
+        public async Task<PagedOutput<SearchArticlesDto>> SearchArticles(SearchArticlesInput input)
+        {
+            var result = await _articleRepository.SearchArticles(input);
+
+            return _mapper.Map<PagedOutput<SearchArticlesDto>>(result);
+        }
+
         private async Task<IList<Category>> GetCategorys(IList<string> categoryIds)
         {
             if (categoryIds.IsNotNullOrEmpty())
             {
+
                 var categoryIdsDistinct = categoryIds.Distinct();
 
                 var categorys = await _categoryRepository.GetById(categoryIdsDistinct);
 
-                if (categoryIds.Count() != categorys.Count)
+                if (categoryIds.Count != categorys.Count)
                     throw new BusinessException("分类信息不存在！");
 
                 return categorys;
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
         private static void SetPublishDate(Article article)

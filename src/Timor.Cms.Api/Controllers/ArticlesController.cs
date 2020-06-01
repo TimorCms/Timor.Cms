@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Timor.Cms.Dto.Articles.CreateArticle;
 using Timor.Cms.Dto.Articles.GetArticleById;
 using Timor.Cms.Dto.Articles.UpdateArticle;
+using Timor.Cms.Dto.Articles.SearchArticles;
+using Timor.Cms.Dto.BaseDto;
 using Timor.Cms.Service.Articles;
 
 namespace Timor.Cms.Api.Controllers
@@ -16,6 +18,19 @@ namespace Timor.Cms.Api.Controllers
         {
             _articleService = articleService;
         }
+
+
+        /// <summary>
+        /// 根据特定条件查询DTO
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<PagedOutput<SearchArticlesDto>> SearchArticles([FromQuery]SearchArticlesInput input)
+        {
+            return null;
+        }
+        
 
         /// <summary>
         /// 根据文章ID获取文章

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MongoDB.Bson;
+using MongoDB.Driver;
 using Timor.Cms.PersistModels.MongoDb.Entities;
 
 namespace Timor.Cms.Repository.MongoDb
@@ -16,6 +17,8 @@ namespace Timor.Cms.Repository.MongoDb
         Task DeleteAsync(TEntity entity);
         Task DeleteMultipleAsync(IEnumerable<ObjectId> ids);
         Task<List<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> condition);
+        IFindFluent<TEntity, TEntity> Find(Expression<Func<TEntity, bool>> condition);
+        IFindFluent<TEntity, TEntity> Find(FilterDefinition<TEntity> condition);
         Task<TEntity> FindFirstOrDefaultAsync(Expression<Func<TEntity, bool>> condition);
         Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> filter);
     }

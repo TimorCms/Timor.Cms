@@ -22,6 +22,13 @@ namespace Timor.Cms.Repository.MongoDb.Collections
             return _collection.Find(filter, options);
         }
 
+        public IFindFluent<TDocument, TDocument> Find(
+            FilterDefinition<TDocument> filter,
+            FindOptions options = null)
+        {
+            return _collection.Find(filter, options);
+        }
+
         public async Task InsertOneAsync(
             TDocument document,
             InsertOneOptions options = null,
@@ -53,12 +60,12 @@ namespace Timor.Cms.Repository.MongoDb.Collections
             return _collection.DeleteManyAsync(filter, cancellationToken);
         }
 
-        public Task<UpdateResult> UpdateMany( FilterDefinition<TDocument> filter,
+        public Task<UpdateResult> UpdateMany(FilterDefinition<TDocument> filter,
             UpdateDefinition<TDocument> update,
             UpdateOptions options = null,
-            CancellationToken cancellationToken = default (CancellationToken))
+            CancellationToken cancellationToken = default(CancellationToken))
         {
-            return _collection.UpdateManyAsync(filter, update,options,cancellationToken);
+            return _collection.UpdateManyAsync(filter, update, options, cancellationToken);
         }
     }
 }
