@@ -31,6 +31,8 @@ namespace Timor.Cms.Service
                 .ReverseMap();
 
             CreateMap<CreateCategoryInput, Category>();
+            
+            CreateMap<UpdateCategoryInput, Category>();
 
             CreateMap<UpdateCategoryInput, Category>();
 

@@ -41,6 +41,7 @@ namespace Timor.Cms.Api.Controllers
             if (loginResult.IsSuccess)
             {
                 loginResult.Claims.Add(new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()));
+                loginResult.Claims.Add(new Claim (ClaimTypes.NameIdentifier,loginResult.UserId));
             }
 
             TimeSpan tokenExpirationDate = TimeSpan.FromDays(1);
